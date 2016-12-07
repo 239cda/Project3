@@ -430,6 +430,644 @@ d3.selectAll("#movingDots")
             .each("start", repeat);}	
 	
       });
+	  d3.select("#titleL")
+	   .html("Family Income at 16")
+	   d3.select("#titleR")
+	   .html("Current Income")
+	  
+	  
+}
+else if (whichGraph == 1) {
+var xValue = [];
+var xValue1 = [];	
+var xValue2 = [];	
+//for drawing education graph
+var circle1 = svg.selectAll("circle") 
+   .data(familyIncome16From0)
+   .enter()
+   .append("circle")	
+	.attr("cx", function(d, i){
+		var a = Math.floor(Math.random() * (max - min)) + min;
+		xValue[i] = a;
+		return a;
+   })
+	.attr("cy", function(d, i) {
+        //based on the number of levels
+		return (svgH - familyIncome16From0[i]["degreeP"] * padding)
+		})
+		//y value + padding		
+	.attr("r", 8) 
+	.attr("id", "movingDotsE")
+	.attr("class", function (d,i) {
+		if(familyIncome16From0[i]["degreeP"] == 4) {
+		return "dots4E"}
+		else if(familyIncome16From0[i]["degreeP"] == 3) {
+		return "dots3E"}
+		else if(familyIncome16From0[i]["degreeP"] == 2) {
+		return "dots2E"}
+		else if(familyIncome16From0[i]["degreeP"] == 1) {
+		return "dots1E"}
+		else if(familyIncome16From0[i]["degreeP"] == 0) {
+		return "dots0E"}
+		else {return "dots8E"}
+		
+	})
+	.attr("fill", function(d,i){
+		if(familyIncome16From0[i]["degreeP"] == 4) {
+		return "#ffeda0"}
+		else if(familyIncome16From0[i]["degreeP"] == 3) {
+		return "#fd8d3c"}
+		else if(familyIncome16From0[i]["degreeP"] == 2) {
+		return "#fc4e2a"}
+		else if(familyIncome16From0[i]["degreeP"] == 1) {
+		return "#e31a1c"}
+		else if(familyIncome16From0[i]["degreeP"] == 0) {
+		return "#b10026"}
+		else{return "#737373"}
+	})
+	.attr("transform", "translate(30, -500)");
+	//.attr("stroke", "black")
+
+var lineL = svg.append("line")
+                        .attr("x1", 35)
+                        .attr("y1", svgH/2+ 65)
+                       .attr("x2", 35)
+                        .attr("y2", padding + 65)
+                        .attr("class", "axis")
+var lineR = svg.append("line")
+                        .attr("x1", svgW - 35)
+                        .attr("y1", svgH/2 + 65)
+                       .attr("x2", svgW - 35)
+                        .attr("y2", padding + 65)
+                        .attr("stroke-width", 1)
+                        .attr("class", "axis");					 
+
+var rectX = svgW/2 - 350;	
+var rectY = svgH - 500 + 90;			
+var legendPadding = 10;	
+var circleX = rectX + legendPadding * 3 - 12;
+var circleY = rectY + 30 - 12;
+
+var dotsColor = ["#ffeda0","#fd8d3c","#fc4e2a","#e31a1c","#b10026","#df65b0","#737373"];
+var legendTextIncome16 = ["Less than high school","High school","Associate/Junior college","Bachelor's","Graduate",
+"Don't know/No answer"]
+
+
+//make a legend box
+var legendBox = svg.append("rect")
+					.attr("x", rectX)
+					.attr("y", rectY)
+					.attr("id", "legendBoxAttributes")
+					
+var legendCircle = svg.append("circle")
+					.attr("cx", circleX)
+					.attr("cy", circleY)
+					.attr("r", 12)
+					.attr("fill", dotsColor[0])
+					.attr("stroke", "black")
+				   svg.append("text")
+					.text(legendTextIncome16[4])			
+					.attr("x", circleX + 15)
+					.attr("font-size", 14)
+					.attr("y", circleY + 4);
+					
+				svg.append("circle")
+					.attr("cx", circleX)
+					.attr("cy", circleY + 27)
+					.attr("r", 12)
+					.attr("fill", dotsColor[1])
+					.attr("stroke", "black")
+				   svg.append("text")
+					.text(legendTextIncome16[3])			
+					.attr("x", circleX + 15)
+					.attr("font-size", 14)
+					.attr("y", circleY + 4 + 27);
+					
+				svg.append("circle")
+					.attr("cx", circleX)
+					.attr("cy", circleY + 52)
+					.attr("r", 12)
+					.attr("fill", dotsColor[2])
+					.attr("stroke", "black")
+				   svg.append("text")
+					.text(legendTextIncome16[2])			
+					.attr("x", circleX + 15)
+					.attr("font-size", 14)
+					.attr("y", circleY + 4 + 52);
+					
+				svg.append("circle")
+					.attr("cx", circleX + 200)
+					.attr("cy", circleY)
+					.attr("r", 12)
+					.attr("fill", dotsColor[3])
+					.attr("stroke", "black")
+				   svg.append("text")
+					.text(legendTextIncome16[1])			
+					.attr("x", circleX + 215)
+					.attr("font-size", 14)
+					.attr("y", circleY + 4);
+					
+				svg.append("circle")
+					.attr("cx", circleX + 200)
+					.attr("cy", circleY + 27)
+					.attr("r", 12)
+					.attr("fill", dotsColor[4])
+					.attr("stroke", "black")
+				   svg.append("text")
+					.text(legendTextIncome16[4])			
+					.attr("x", circleX + 215)
+					.attr("font-size", 14)
+					.attr("y", circleY + 4 + 27);
+					
+				svg.append("circle")
+					.attr("cx", circleX + 200)
+					.attr("cy", circleY + 52)
+					.attr("r", 12)
+					.attr("fill", dotsColor[6])
+					.attr("stroke", "black")
+				   svg.append("text")
+					.text(legendTextIncome16[5])			
+					.attr("x", circleX + 215)
+					.attr("font-size", 14)
+					.attr("y", circleY + 4 + 52);		
+			
+
+d3.selectAll("#movingDotsE")
+	.data(xValue)
+   .transition()
+	.each("start", function repeat() {
+	if(rearrange == false) {
+		d3.selectAll("#movingDotsE")
+		   .transition()
+		   .duration(3000)
+		   .ease("backs")
+            .attr("cx", function(d, i) {
+			xValue2[i] = xValue[i] + ((Math.random() - 0.5) * 30);
+			return xValue2[i]})
+			.attr("cy", function(d, i) {	
+					return (svgH - familyIncome16From0[i]["degreeP"] * padding) + (Math.random() - 0.5) * 30
+			})
+          .transition()
+		  .duration(3000)
+		  .ease("backs")
+            .attr("cx", function(d, i) {
+			xValue1[i] = xValue2[i] + ((Math.random() - 0.5) * 30);
+				return xValue1[i]})
+			.attr("cy", function(d, i) {	
+					return (svgH - familyIncome16From0[i]["degreeP"] * padding) + (Math.random() - 0.5) * 30
+			})
+          .transition()
+            .each("start", repeat);}
+			
+	else if(rearrange == true) {
+		d3.selectAll("#movingDotsE")
+		   .transition()
+		   .duration(3000)
+		   .ease("backs")
+            .attr("cx", function(d, i) {
+			if (familyIncome16From0[i].degreeMe < 5) {
+				xValue2[i] = xValue[i] + ((Math.random() - 0.5) * 30);
+				return xValue2[i] + 650}
+			else {
+				return  1000 + (Math.random() - 0.5) * 30;}
+			})
+			.attr("cy", function(d, i) {
+				if(familyIncome16From0[i].degreeMe > 5) {return 800 + (Math.random() - 0.5) * 30;}
+				else {return (svgH -familyIncome16From0[i].degreeMe * padding) + (Math.random() - 0.5) * 30}
+				})
+          .transition()
+		  .duration(3000)
+		  .ease("backs")
+            .attr("cx", function(d, i) {
+			if (familyIncome16From0[i].degreeMe < 5) {
+				xValue1[i] = xValue2[i] + ((Math.random() - 0.5) * 30);
+				return xValue1[i] + 650}
+			else {
+				return  1000 + (Math.random() - 0.5) * 30;}	
+			})
+			.attr("cy", function(d, i) {
+				if(familyIncome16From0[i].degreeMe > 5) {return 800 + (Math.random() - 0.5) * 30;}
+				else {return (svgH -familyIncome16From0[i].degreeMe * padding) + (Math.random() - 0.5) * 30}
+				})
+          .transition()
+            .each("start", repeat);}	
+	
+      });
+	  
+	  
+	  d3.select("#titleL")
+	   .html("Father Education Level")
+	   d3.select("#titleR")
+	   .html("Responder Education Level")
+}
+
+
+
+	  }
+//this function triggered upon click of arrow
+//another transition. the circles are moved to the other side of arrow
+function rearrangeCir() {
+	rearrange = true;
+} 
+function income2000Max(familyIncome16From0)  {
+	var level = Math.floor(d3.max(income2000)) / 5;
+	for (i=0;i<familyIncome16From0.length;i++){
+		if (familyIncome16From0[i].incomeNumber2000 < level){familyIncome16From0[i].incomeNumber2000Pro = 1}
+		else if (familyIncome16From0[i].incomeNumber2000 < level * 2){familyIncome16From0[i].incomeNumber2000Pro =  2}
+		else if (familyIncome16From0[i].incomeNumber2000 < level * 3){familyIncome16From0[i].incomeNumber2000Pro =  3}
+		else if (familyIncome16From0[i].incomeNumber2000 < level * 4){familyIncome16From0[i].incomeNumber2000Pro =  4}
+		else if (familyIncome16From0[i].incomeNumber2000 >= level * 4){familyIncome16From0[i].incomeNumber2000Pro = 5}
+	} 
+	
+}
+
+</script>
+</body>
+
+</html>
+.labelCLL {
+	position: absolute;
+    left: 30px;
+    top: 580px;
+	font-size: 11px;
+}
+.labelCRL {
+	position: absolute;
+    left: 1150px;
+    top: 580px;
+	font-size: 11px;
+}
+.menu{
+	cursor:pointer;
+	position: absolute;
+	top : 70px;
+	font-size: 18px;
+}
+.submenu{
+	cursor:pointer;
+	position: absolute;
+	left : 980px;
+	font-size: 13px;
+}
+.buttonTextDetail{
+	cursor:pointer;
+	position: absolute;
+	font-size: 15px;
+	left:1050px
+}
+a:link {
+    text-decoration: none;
+	color: black;
+}
+
+a:visited {
+    text-decoration: none;
+	color: black;
+}
+
+</style>
+</head>
+<header class="pageTitle" style="font-size: 25px;position: absolute; left: 420px; top: 10px;" >General Social Survey (1972 - 2014) </header>
+<text style= "font-size: 12px;position: absolute; left: 500px; top: 45px;">(currently displaying data from 2014 survey)</text>
+<text class="menu" onclick="incomeGraph()"style="positon:absolute; left: 350px;">Income</text>
+<text class="menu" onclick ="eduGraph()"style="positon:absolute; left: 600px;">Education</text>
+<text class="menu" style="positon:absolute; left: 850px;">On Society</text>
+
+<text class="submenu" onclick="womenGraph()" hidden style="positon:absolute; top: 55px;">Working Women</text>
+<text class="submenu" onclick="confidenceGraph();"hidden style="positon:absolute; top: 85px;">Confidence in Society</text>
+<a href="https://239cda.github.io/Project3/timechart.html" text class="buttonTextDetail" style="cursor:pointer;positon:absolute; top: 625px;left:1050px;">Explore More</text></a>
+
+<text class="labelCL" >High</text>
+<text class="labelCLL">Low</text>
+<text id = "titleL">Family income at 16</text>
+<text class="labelCR">High</text>
+<text class="labelCRL">Low</text>
+<text id = "titleR">Current Income</text>
+
+
+
+<img src="arrow.jpg" onclick = "rearrangeCir();" style="cursor:pointer;position: absolute; left: 580px; top: 340px;width:60px;height:60px;" ></img>
+<body>
+<script>
+//load data file
+//select 100 rows, based on random numbers generated by code --> and maybe save it somewhere else. 
+//first of all, load file with columns related to income
+//check year column, and based on that column, save data into separate arrays. 
+
+var rowNumber = [758, 2003, 1333, 29, 320, 2234, 1340, 250, 2195, 518, 1285, 270, 728, 1942, 706, 60, 519, 1794, 427, 1228, 2444, 1803, 1099, 1641, 467, 814, 2399, 1814, 76, 203, 1480, 1793, 1556, 1433, 1914, 2455, 355, 2100, 1007, 1846, 845, 1044, 954, 136, 209, 2094, 881, 2209, 2440, 878, 2452, 939, 2060, 783, 1700, 865, 992, 1895, 1439, 501, 1194, 150, 662, 908, 1110, 236, 1635, 2193, 391, 119, 2389, 991, 2281, 1666, 152, 872, 1355, 289, 997, 2268, 451, 1036, 1508, 2037, 548, 1823, 2372, 1225, 2532, 1423, 517, 1781, 2189, 1550, 319, 1513, 2052, 2528, 116, 894]
+//below is actually a total dataset
+var familyIncome16From0 = [];
+
+//max value of income2000Max
+var income2000 = [];
+
+var rearrange = false;
+
+
+var svgW = 1200;
+var svgH = 1000;
+
+var svg = d3.select("body")
+            .append("svg")
+            .attr("width", svgW)
+            .attr("height", svgH);
+
+Papa.parse('data2014(processed).csv', {
+			download: true,
+			header: true,
+			dynamicTyping: true,
+			complete: function(results) 
+			{
+				// loop through all the rows in file
+				//at the same time, use if statement to save only income data and so on
+				for (var i=0; i < rowNumber.length; i++)
+				{
+					var record = results.data[rowNumber[i]];
+					var income16Array = {
+					    name: record.ID,
+						rowNum : rowNumber[i],
+						income16: record.INCOM16,
+						incomeNow: record.INCOME,
+						incomeNumber2000: record.CONINC,
+						incomeNumber2000Pro: 0,
+						degreeMe: record.DEGREE,
+						degreeP: record.PADEG,
+						degreeM: record.MADEG,
+						momWorked: record.MAWRKGRW,
+						womenWorking: record.FEFAM,
+						confidencePress: record.CONPRESS,
+						confidenceLaw: record.CONJUDGE,
+						confidenceCongress: record.CONLEGIS
+					}
+					//familyIncome16[income16Array.rowNum] = income16Array;
+					familyIncome16From0[i] = income16Array;
+					income2000[i] = income16Array.incomeNumber2000;
+				}//console.log(familyIncome16)
+				income2000Max(familyIncome16From0);
+				drawCircle(familyIncome16From0, rowNumber, 0);
+			}//has to insert number in number row aarray
+})
+//----------------data load ends here--------------------
+
+//then call data from such arrays and draw circles
+//give physical movements
+//the arrow is shining + changing in size
+//upon clicking the arrow, draw same circles and they move to adjust
+
+function eduGraph() {
+	//on clicking each menu, it starts a drawCircle function with a variable that decides which variable (property) to pass
+	rearrange = false;
+	drawCircle(familyIncome16From0, rowNumber, 1);
+}
+function incomeGraph() {
+	//on clicking each menu, it starts a drawCircle function with a variable that decides which variable (property) to pass
+	rearrange = false;
+	drawCircle(familyIncome16From0, rowNumber, 0);
+}
+function drawCircle(familyIncome16From0, rowNumber, whichGraph) {
+	svg.selectAll("*").remove();
+//make an array that contains possible x values (may be refreshed every time the function is called)
+var min = Math.ceil(50);
+var max = Math.floor(400);
+
+var padding = 75;
+
+if(whichGraph == 0) {
+var xValue = [];
+var xValue1 = [];	
+var xValue2 = [];	
+//for drawing income graph
+var circle1 = svg.selectAll("circle") 
+   .data(familyIncome16From0)
+   .enter()
+   .append("circle")	
+	.attr("cx", function(d, i){
+		var a = Math.floor(Math.random() * (max - min)) + min;
+		xValue[i] = a;
+		return a;
+   })
+	.attr("cy", function(d, i) {
+        //based on the number of levels
+		return (svgH - familyIncome16From0[i]["income16"] * padding) + 65})
+		//y value + padding		
+	.attr("r", 8) 
+	.attr("id", "movingDots")
+	.attr("class", function (d,i) {
+		if(familyIncome16From0[i]["income16"] == 5) {
+		return "dots5"}
+		else if(familyIncome16From0[i]["income16"] == 4) {
+		return "dots4"}
+		else if(familyIncome16From0[i]["income16"] == 3) {
+		return "dots3"}
+		else if(familyIncome16From0[i]["income16"] == 2) {
+		return "dots2"}
+		else if(familyIncome16From0[i]["income16"] == 1) {
+		return "dots1"}
+		else if(familyIncome16From0[i]["income16"] == 7) {
+		return "dots7"}
+		else if(familyIncome16From0[i]["income16"] == 8) {
+		return "dots8"}
+		else if(familyIncome16From0[i]["income16"] == 9) {
+		return "dots8"}	
+		
+	})
+	.attr("fill", function(d,i){
+		if(familyIncome16From0[i]["income16"] == 5) {
+		return "#ffeda0"}
+		else if(familyIncome16From0[i]["income16"] == 4) {
+		return "#fd8d3c"}
+		else if(familyIncome16From0[i]["income16"] == 3) {
+		return "#fc4e2a"}
+		else if(familyIncome16From0[i]["income16"] == 2) {
+		return "#e31a1c"}
+		else if(familyIncome16From0[i]["income16"] == 1) {
+		return "#b10026"}
+		else if(familyIncome16From0[i]["income16"] == 7) {
+		return "#df65b0"}
+		else if(familyIncome16From0[i]["income16"] == 8) {
+		return "#737373"}
+		else if(familyIncome16From0[i]["income16"] == 9) {
+		return "#737373"}	
+	})
+	.attr("data-legend",function(d) { return 30})
+	.attr("transform", "translate(30, -500)");
+	//.attr("stroke", "black")
+
+var lineL = svg.append("line")
+                        .attr("x1", 35)
+                        .attr("y1", svgH/2+ 65)
+                       .attr("x2", 35)
+                        .attr("y2", padding + 65)
+                        .attr("class", "axis")
+var lineR = svg.append("line")
+                        .attr("x1", svgW - 35)
+                        .attr("y1", svgH/2 + 65)
+                       .attr("x2", svgW - 35)
+                        .attr("y2", padding + 65)
+                        .attr("stroke-width", 1)
+                        .attr("class", "axis");					 
+
+var rectX = svgW/2 - 350;	
+var rectY = svgH - 500 + 90;			
+var legendPadding = 10;	
+var circleX = rectX + legendPadding * 3 - 12;
+var circleY = rectY + 30 - 12;
+
+var dotsColor = ["#ffeda0","#fd8d3c","#fc4e2a","#e31a1c","#b10026","#df65b0","#737373"];
+var legendTextIncome16 = ["Far below Average","Below Average","Average","Above average","Far above average",
+"Lived in institution","Don't know/No answer"]
+
+
+
+//make a legend box
+var legendBox = svg.append("rect")
+					.attr("x", rectX)
+					.attr("y", rectY)
+					.attr("id", "legendBoxAttributes")
+					
+var legendCircle = svg.append("circle")
+					.attr("cx", circleX)
+					.attr("cy", circleY)
+					.attr("r", 12)
+					.attr("fill", dotsColor[0])
+					.attr("stroke", "black")
+				   svg.append("text")
+					.text(legendTextIncome16[4])			
+					.attr("x", circleX + 15)
+					.attr("font-size", 14)
+					.attr("y", circleY + 4);
+					
+				svg.append("circle")
+					.attr("cx", circleX)
+					.attr("cy", circleY + 27)
+					.attr("r", 12)
+					.attr("fill", dotsColor[1])
+					.attr("stroke", "black")
+				   svg.append("text")
+					.text(legendTextIncome16[3])			
+					.attr("x", circleX + 15)
+					.attr("font-size", 14)
+					.attr("y", circleY + 4 + 27);
+					
+				svg.append("circle")
+					.attr("cx", circleX)
+					.attr("cy", circleY + 52)
+					.attr("r", 12)
+					.attr("fill", dotsColor[2])
+					.attr("stroke", "black")
+				   svg.append("text")
+					.text(legendTextIncome16[2])			
+					.attr("x", circleX + 15)
+					.attr("font-size", 14)
+					.attr("y", circleY + 4 + 52);
+					
+				svg.append("circle")
+					.attr("cx", circleX + 200)
+					.attr("cy", circleY)
+					.attr("r", 12)
+					.attr("fill", dotsColor[3])
+					.attr("stroke", "black")
+				   svg.append("text")
+					.text(legendTextIncome16[1])			
+					.attr("x", circleX + 215)
+					.attr("font-size", 14)
+					.attr("y", circleY + 4);
+					
+				svg.append("circle")
+					.attr("cx", circleX + 200)
+					.attr("cy", circleY + 27)
+					.attr("r", 12)
+					.attr("fill", dotsColor[4])
+					.attr("stroke", "black")
+				   svg.append("text")
+					.text(legendTextIncome16[4])			
+					.attr("x", circleX + 215)
+					.attr("font-size", 14)
+					.attr("y", circleY + 4 + 27);
+					
+				svg.append("circle")
+					.attr("cx", circleX + 200)
+					.attr("cy", circleY + 52)
+					.attr("r", 12)
+					.attr("fill", dotsColor[5])
+					.attr("stroke", "black")
+				   svg.append("text")
+					.text(legendTextIncome16[5])			
+					.attr("x", circleX + 215)
+					.attr("font-size", 14)
+					.attr("y", circleY + 4 + 52);	
+					
+				svg.append("circle")
+					.attr("cx", circleX + 400)
+					.attr("cy", circleY)
+					.attr("r", 12)
+					.attr("fill", dotsColor[6])
+					.attr("stroke", "black")
+				   svg.append("text")
+					.text(legendTextIncome16[6])			
+					.attr("x", circleX + 415)
+					.attr("font-size", 14)
+					.attr("y", circleY);		
+			
+d3.selectAll("#movingDots")
+	.data(xValue)
+   .transition()
+	.each("start", function repeat() {
+	if(rearrange == false) {
+		d3.selectAll("#movingDots")
+		   .transition()
+		   .duration(3000)
+		   .ease("backs")
+            .attr("cx", function(d, i) {
+			xValue2[i] = xValue[i] + ((Math.random() - 0.5) * 30);
+			return xValue2[i]})
+			.attr("cy", function(d, i) {		
+			return (svgH - familyIncome16From0[i]["income16"] * padding) + (Math.random() - 0.5) * 30 + 65})
+          .transition()
+		  .duration(3000)
+		  .ease("backs")
+            .attr("cx", function(d, i) {
+			xValue1[i] = xValue2[i] + ((Math.random() - 0.5) * 30);
+				return xValue1[i]})
+			.attr("cy", function(d, i) {		
+				return (svgH -familyIncome16From0[i]["income16"] * padding) + (Math.random() - 0.5) * 30 + 65})
+          .transition()
+            .each("start", repeat);}
+			
+	else if(rearrange == true) {
+		d3.selectAll("#movingDots")
+		   .transition()
+		   .duration(3000)
+		   .ease("backs")
+            .attr("cx", function(d, i) {
+			if (familyIncome16From0[i].incomeNow < 13) {
+				xValue2[i] = xValue[i] + ((Math.random() - 0.5) * 30);
+				return xValue2[i] + 650}
+			else {
+				return  1000 + (Math.random() - 0.5) * 30;}
+			})
+			.attr("cy", function(d, i) {
+				if(familyIncome16From0[i].incomeNumber2000Pro == 0) {return 800 + (Math.random() - 0.5) * 30;}
+				else {return (svgH -familyIncome16From0[i].incomeNumber2000Pro * padding) + (Math.random() - 0.5) * 30 + 65}
+				})
+          .transition()
+		  .duration(3000)
+		  .ease("backs")
+            .attr("cx", function(d, i) {
+			if (familyIncome16From0[i].incomeNow < 13) {
+				xValue1[i] = xValue2[i] + ((Math.random() - 0.5) * 30);
+				return xValue1[i] + 650}
+			else {
+				return  1000 + (Math.random() - 0.5) * 30;}	
+			})
+			.attr("cy", function(d, i) {
+				if(familyIncome16From0[i].incomeNumber2000Pro == 0) {return 800 + (Math.random() - 0.5) * 30;}
+				else {return (svgH -familyIncome16From0[i].incomeNumber2000Pro * padding) + (Math.random() - 0.5) * 30 + 65}
+				})
+          .transition()
+            .each("start", repeat);}	
+	
+      });
 }
 else if (whichGraph == 1) {
 var xValue = [];
