@@ -63,7 +63,12 @@ a:visited {
 <a href= "https://239cda.github.io/Project3/timechart.html" text class="submenu" style="positon:absolute; left: 660px;">By Time</text></a>
 <a href= "https://239cda.github.io/Project3/scatter.html"text class="submenu" style="positon:absolute; left: 750px;">By Variables</text></a>
 
-<select id="drop1" style="position: absolute;left: 800px;top: 700px">
+
+
+
+
+
+<select id="drop1" style="position: absolute;left: 500px;top: 1300px">
 <option >Father Highest Degree</option>
 <option>Mother Highest Degree</option>
 <option>Spouse Highest Degree</option>
@@ -83,7 +88,7 @@ a:visited {
 <option>Level of Happiness</option>
 </select>
 
-<select id="drop2" style="position: absolute;left: 800px;top: 750px">
+<select id="drop2" style="position: absolute;left: 500px;top: 1350px">
 <option >1972</option>
 <option>1976</option>
 <option>1980</option>
@@ -212,6 +217,7 @@ function scaleValues(variable) {
 if(variable == "income16") {
 	domainX = 1;
 	domainY = 5;
+	
 }
 else if (variable == "whereLived16") {
 	domainX = 1;
@@ -553,6 +559,10 @@ svg.append("text")
 	.attr("x", 0)
 	.attr("y", chartH + 30)
 .attr("transform", "translate(0, 120)")
+
+
+d3.select("#pageTitle")
+	.html(totalCaption[indexYaxis]+ " with other variables")
 
 }
 
