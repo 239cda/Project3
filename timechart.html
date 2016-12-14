@@ -1,4 +1,162 @@
+<html>
+<head>
+<meta charset="utf-8">
+<title>Project 3</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js" charset="utf-8"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/4.1.2/papaparse.min.js" charset="utf-8"></script>
+<style type="text/css">
+#legendBoxAttributes {
+	fill: none;
+	stroke:grey;
+	shape-rendering: crispEdges;
+	width: 200;
+	height: 200;
+}
+#navBoxAttributes {
+	fill: none;
+	stroke:grey;
+	shape-rendering: crispEdges;
+	width: 1000;
+	height: 200;
+}
+text { 
+			font-family: Arial; 
+			font-size: 15px;
+		}
+		.axis path, .axis line {
+			fill: none;
+			stroke: black;
+			shape-rendering: crispEdges;
+		}
+		.tick text {
+			fill: black;
+			font-size: 11px;
+		}
+		  .lines {
+            stroke: black;
+        }
+.menu{
+	cursor:pointer;
+	position: absolute;
+	top : 50px;
+	font-size: 18px;
+}
+.submenu{
+	cursor:pointer;
+	position: absolute;
+	top : 52px;
+	font-size: 13px;
+}
+a:link {
+    text-decoration: none;
+	color: black;
+}
 
+a:visited {
+    text-decoration: none;
+	color: black;
+	
+}
+.navLabel {
+	position: absolute; 
+	top: 1650px;
+	font-size: 15px;
+}
+
+.labelSex {
+	position: absolute; 
+	top: 1680px;
+	font-size: 15px;
+}
+.labelRace {
+	position: absolute; 
+	top: 1715px;
+	font-size: 15px;
+}
+
+</style>
+</head>
+<text class="pageTitle" id="pageTitle" style="font-size: 25px;position: absolute; left: 360px; top: 10px;" >Total number of responders received each degree</text>
+<a href= "https://239cda.github.io/Project3/home.html" text class="menu" style="positon:absolute; left: 350px;">Back to Top</text></a>
+<a href= "https://239cda.html" text class="menu" onclick ="" style="positon:absolute; left: 550px;">Explore</text>
+<a href= "https://239cda.github.io/Project3/timechart.html" text class="submenu" style="positon:absolute; left: 670px;">By Time</text></a>
+<a href= "https://239cda.github.io/Project3/scatter.html"text class="submenu" style="positon:absolute; left: 750px;">By Variables</text></a>
+<a href= "https://239cda.html"text class="submenu" style="positon:absolute; left: 850px;">By Detail</text></a>
+
+<img src="timeline.png" style="position: absolute; left: 80px; top: 640px;" ></img>
+
+<text class="navLabel" style=" left: 80px;" >Variable 1</text>
+<text class="navLabel" style=" left: 530px" >Variable 2</text>
+<text class="labelSex" style=" left: 80px;" >Filter by Sex</text>
+<text class="labelRace" style=" left: 80px;" >Filter by Race</text>
+
+<text class="labelSex" style=" left: 250px;" >Both</text>
+<text class="labelSex" style=" left: 400px;" >Male</text>
+<text class="labelSex" style=" left: 550px;" >Female</text>
+
+<text class="labelRace" style=" left: 250px;" >All</text>
+<text class="labelRace" style=" left: 400px;" >White</text>
+<text class="labelRace" style=" left: 550px;" >Black</text>
+<text class="labelRace" style=" left: 700px;" >Others</text>
+
+<select id="var1" style="position: absolute; left: 150px; top: 1650px">
+<option selected="selected">Father Highest Degree</option>
+<option>Mother Highest Degree</option>
+<option>Spouse Highest Degree</option>
+<option>Responder Highest Degree</option>
+<option>Family Income Level at 16</option>
+<option>Current Income Level</option>
+<option>Mother Worked or Not While Growing Up</option>
+<option>View on Role of Men and Women</option>
+<option>View on Working Mother</option>
+<option>Confidence in Press</option>
+<option>Confidence in Law</option>
+<option>Confidence in Congress</option>
+</select>
+
+<select id="var2" style="position: absolute; left: 600px; top: 1650px">
+<option class = "drop2" id = "op0">Father Highest Degree</option>
+<option class = "drop2" id = "op1">Mother Highest Degree</option>
+<option class = "drop2" id = "op2">Spouse Highest Degree</option>
+<option class = "drop2" id = "op3" selected="selected">Responder Highest Degree</option>
+<option class = "drop2" id = "op4">Family Income Level at 16</option>
+<option class = "drop2" id = "op5">Current Income Level</option>
+<option class = "drop2" id = "op6">Mother Worked or Not While Growing Up</option>
+<option class = "drop2" id = "op7">View on Role of Men and Women</option>
+<option class = "drop2" id = "op8">View on Working Mother</option>
+<option class = "drop2" id = "op9">Confidence in Press</option>
+<option class = "drop2" id = "op10">Confidence in Law</option>
+<option class = "drop2" id = "op11">Confidence in Congress</option>
+</select>
+
+<input type="radio" id ="radioBothSex" onclick = "filterBothSex();" value="bar" checked style="position: absolute; left: 250px; top: 1700px"> 
+<input type="radio" id ="radioFemale" onclick = "filterFemale();" value="bar" style="position: absolute; left: 550px; top: 1700px"> 
+<input type="radio" id ="radioMale" onclick = "filterMale();" value="bar" style="position: absolute; left: 400px; top: 1700px"> 
+<input type="radio" id ="radioAllRace" onclick = "filterAllRace();" value="bar" checked style="position: absolute; left: 250px; top: 1730px"> 
+<input type="radio" id ="radioWhite" onclick = "filterWhite();" value="bar" style="position: absolute; left: 400px; top: 1730px"> 
+<input type="radio" id ="radioBlack" onclick = "filterBlack();" value="bar" style="position: absolute; left: 550px; top: 1730px"> 
+<input type="radio" id ="radioOther" onclick = "filterOther();" value="bar" style="position: absolute; left: 700px; top: 1730px"> 
+<!--
+
+<text id="explain">Excluding answers "Don't know" "No answer" "Not applicable"</text>
+-->
+<body>
+<script>
+//load data file
+//select 100 rows, based on random numbers generated by code --> and maybe save it somewhere else. 
+//first of all, load file with columns related to income
+//check year column, and based on that column, save data into separate arrays. 
+
+var dataset = [];
+var years = [1972, 1976, 1980, 1984, 1988, 1993, 1996, 2000, 2004, 2006, 2010, 2014];
+var income2000 = [];
+Papa.parse('TotalYearData.csv', {
+			download: true,
+			header: true,
+			dynamicTyping: true,
+			complete: function(results) 
+			{
+				// loop through all the rows in file
 				//at the same time, use if statement to save only income data and so on
 				for (var i=0; i < results.data.length; i++)
 				{
@@ -18,19 +176,24 @@
 						degreeS: record.SPDEG,
 						momWorked: record.MAWRKGRW,
 						womenWorking: record.FEFAM,
+						workingMother : record.FECHLD,
 						confidencePress: record.CONPRESS,
 						confidenceLaw: record.CONJUDGE,
-						confidenceCongress: record.CONLEGIS
+						confidenceCongress: record.CONLEGIS,
+						sex:record.SEX,
+						race:record.RACE,
+					
 					}
 					dataset[i] = Array;
 					income2000[i] = Array.incomeNumber2000;
 				}
 				income2000Max(dataset);
-				drawBar1("degreeP");
-				drawBar2("degreeP");
-				drawBar3("degreeP");
-				drawBar4("degreeP");
-				drawBar5("degreeP");
+				
+						drawBar1("degreeP", "degreeMe", 4, 0, 4, 0, 0);
+						drawBar1("degreeP", "degreeMe", 3, 0, 4, 0, 0);
+						drawBar1("degreeP", "degreeMe", 2, 0, 4, 0, 0);
+						drawBar1("degreeP", "degreeMe", 1, 0, 4, 0, 0);
+						drawBar1("degreeP", "degreeMe", 0, 0, 4, 0, 0);
 
 				
 				
@@ -45,115 +208,454 @@
 					   var selection = document.getElementById('var1');
 					   var selectedVariable= selection.options[selection.selectedIndex].value;
 					   var selectedIndex = document.getElementById("var1").selectedIndex;
+					   var selectedIndex2 = document.getElementById("var2").selectedIndex;
+					   
+						var bothSexOn = document.getElementById("radioBothSex").checked;
+						var femaleOn = document.getElementById("radioFemale").checked;
+						var maleOn = document.getElementById("radioMale").checked;
+						var allRaceOn = document.getElementById("radioAllRace").checked;
+						var whiteOn = document.getElementById("radioWhite").checked;
+						var blackOn = document.getElementById("radioBlack").checked;
+						var otherOn = document.getElementById("radioOther").checked;
 						
-						if(selectedIndex == 0) {
-						drawBar1("degreeP");
-						drawBar2("degreeP");
-						drawBar3("degreeP");
-						drawBar4("degreeP");
-						drawBar5("degreeP");
-					   }
-					   else if(selectedIndex == 1) {
-						drawBar1("degreeM");
-						drawBar2("degreeM");
-						drawBar3("degreeM");
-						drawBar4("degreeM");
-						drawBar5("degreeM");
-					   }
-					    else if(selectedIndex == 2) {
-						drawBar1("degreeS");
-						drawBar2("degreeS");
-						drawBar3("degreeS");
-						drawBar4("degreeS");
-						drawBar5("degreeS");
-					   }
-					   else if(selectedIndex == 3) {
-						drawBar1("degreeS");
-						drawBar2("degreeS");
-						drawBar3("degreeS");
-						drawBar4("degreeS");
-						drawBar5("degreeS");
-					   }
-				   })
+						var filterSex = 0;
+						var filterRace = 0;
+						
+					   var totalVar = ["degreeP","degreeM","degreeS","degreeMe","income16","incomeNumber2000Pro","momWorked",
+					   "womenWorking","workingMother","confidencePress","confidenceLaw","confidenceCongress"]
+						var run = 0;
+						var halt = 0;
+						
+						if(bothSexOn == true) {filterSex = 0;}
+						else if(femaleOn == true) {filterSex = 2;}
+						else if(maleOn == true) {filterSex = 1;};
+						
+						if(allRaceOn == true) {filterRace = 0;}
+						else if(whiteOn == true) {filterRace = 1;}
+						else if(blackOn == true) {filterRace = 2;}
+						else if(otherOn == true) {filterRace = 3;};
 
+						//father income
+						if(selectedIndex == 0) {
+						d3.select("body").selectAll('svg').remove();
+						run = 4;
+						halt = 0;
+						}
+						else if(selectedIndex == 1){
+						//if (selectedIndex < selectedIndex2) {selectedIndex2 = selectedIndex2 - 1;}
+						//document.getElementById("op1").hidden = "true";
+						d3.select("body").selectAll('svg').remove();
+						run = 4;
+						halt = 0;							
+						}
+						else if(selectedIndex == 2){
+						//if (selectedIndex < selectedIndex2) {selectedIndex2 = selectedIndex2 - 1;}
+						//document.getElementById("op2").hidden = "true";
+						d3.select("body").selectAll('svg').remove();
+						run = 4;
+						halt = 0;
+						}
+						else if(selectedIndex == 3){
+						//if (selectedIndex < selectedIndex2) {selectedIndex2 = selectedIndex2 - 1;}
+						//document.getElementById("op3").hidden = "true";
+						d3.select("body").selectAll('svg').remove();
+						run = 4;
+						halt = 0;
+						}
+						else if(selectedIndex == 4){
+						//if (selectedIndex < selectedIndex2) {selectedIndex2 = selectedIndex2 - 1;}
+						//document.getElementById("op4").hidden = "true";
+						d3.select("body").selectAll('svg').remove();
+						run = 5;
+						halt = 1;
+						}
+						else if(selectedIndex == 5){
+						//if (selectedIndex < selectedIndex2) {selectedIndex2 = selectedIndex2 - 1;}
+						//document.getElementById("op5").hidden = "true";
+						d3.select("body").selectAll('svg').remove();
+						run = 4;
+						halt = 0;
+						}
+						else if(selectedIndex == 6){
+						//if (selectedIndex < selectedIndex2) {selectedIndex2 = selectedIndex2 - 1;}
+						//document.getElementById("op6").hidden = "true";
+						d3.select("body").selectAll('svg').remove();
+						run = 2;
+						halt = 1;
+						}
+						else if(selectedIndex == 7){
+						if (selectedIndex < selectedIndex2) {selectedIndex2 = selectedIndex2 - 1;}
+						//document.getElementById("op7").hidden = "true";
+						d3.select("body").selectAll('svg').remove();
+						run = 4;
+						halt = 1;
+						}else if(selectedIndex == 8){
+						//if (selectedIndex < selectedIndex2) {selectedIndex2 = selectedIndex2 - 1;}
+						//document.getElementById("op8").hidden = "true";
+						d3.select("body").selectAll('svg').remove();
+						run = 4;
+						halt = 1;
+						}else if(selectedIndex == 9){
+						//if (selectedIndex < selectedIndex2) {selectedIndex2 = selectedIndex2 - 1;}
+						//document.getElementById("op9").hidden = "true";
+						d3.select("body").selectAll('svg').remove();
+						run = 3;
+						halt = 1;
+						}else if(selectedIndex == 10){
+						//if (selectedIndex < selectedIndex2) {selectedIndex2 = selectedIndex2 - 1;}
+						//document.getElementById("op10").hidden = "true";
+						d3.select("body").selectAll('svg').remove();
+						run = 3;
+						halt = 1;
+						}else if(selectedIndex == 11){
+						//if (selectedIndex < selectedIndex2) {selectedIndex2 = selectedIndex2 - 1;}
+						//document.getElementById("op11").hidden = "true";
+						d3.select("body").selectAll('svg').remove();
+						run = 3;
+						halt = 1;
+						}
+
+						a(run, halt, run, filterSex, filterRace);
+						function a(run, halt, maxAnswer, filterSex, filterRace) {
+						
+						
+							while (run >= halt) {
+							drawBar1(totalVar[selectedIndex], totalVar[selectedIndex2], run, halt, maxAnswer, filterSex,filterRace);
+							run = run - 1;
+						}
+						numberRun = 0;
+						}
+				   })
+					d3.select("#var2")
+				   .on('change', function(){
+
+					   var selection = document.getElementById('var1');
+					   var selectedVariable= selection.options[selection.selectedIndex].value;
+					   var selectedIndex = document.getElementById("var1").selectedIndex;
+					   var selectedIndex2 = document.getElementById("var2").selectedIndex;
+					   
+						var bothSexOn = document.getElementById("radioBothSex").checked;
+						var femaleOn = document.getElementById("radioFemale").checked;
+						var maleOn = document.getElementById("radioMale").checked;
+						var allRaceOn = document.getElementById("radioAllRace").checked;
+						var whiteOn = document.getElementById("radioWhite").checked;
+						var blackOn = document.getElementById("radioBlack").checked;
+						var otherOn = document.getElementById("radioOther").checked;
+						
+						var filterSex = 0;
+						var filterRace = 0;
+						
+					   var totalVar = ["degreeP","degreeM","degreeS","degreeMe","income16","incomeNumber2000Pro","momWorked",
+					   "womenWorking","workingMother","confidencePress","confidenceLaw","confidenceCongress"]
+						var run = 0;
+						var halt = 0;
+						
+						if(bothSexOn == true) {filterSex = 0;}
+						else if(femaleOn == true) {filterSex = 2;}
+						else if(maleOn == true) {filterSex = 1;};
+						
+						if(allRaceOn == true) {filterRace = 0;}
+						else if(whiteOn == true) {filterRace = 1;}
+						else if(blackOn == true) {filterRace = 2;}
+						else if(otherOn == true) {filterRace = 3;};
+
+						
+						if(selectedIndex2 == 0) {
+						//if (selectedIndex < selectedIndex2) {selectedIndex2 = selectedIndex2 - 1;}
+						//document.getElementById("op0").hidden = "true";
+						d3.select("body").selectAll('svg').remove();
+						run = 4;
+						halt = 0;
+						}
+						else if(selectedIndex2 == 1){
+						//if (selectedIndex < selectedIndex2) {selectedIndex2 = selectedIndex2 - 1;}
+						//document.getElementById("op1").hidden = "true";
+						d3.select("body").selectAll('svg').remove();
+						run = 4;
+						halt = 0;							
+						}
+						else if(selectedIndex2 == 2){
+						//if (selectedIndex < selectedIndex2) {selectedIndex2 = selectedIndex2 - 1;}
+						//document.getElementById("op2").hidden = "true";
+						d3.select("body").selectAll('svg').remove();
+						run = 4;
+						halt = 0;
+						}
+						else if(selectedIndex2 == 3){
+						//if (selectedIndex < selectedIndex2) {selectedIndex2 = selectedIndex2 - 1;}
+						//document.getElementById("op3").hidden = "true";
+						d3.select("body").selectAll('svg').remove();
+						run = 4;
+						halt = 0;
+						}
+						else if(selectedIndex2 == 4){
+						//if (selectedIndex < selectedIndex2) {selectedIndex2 = selectedIndex2 - 1;}
+						//document.getElementById("op4").hidden = "true";
+						d3.select("body").selectAll('svg').remove();
+						run = 5;
+						halt = 1;
+						}
+						else if(selectedIndex2 == 5){
+						//if (selectedIndex < selectedIndex2) {selectedIndex2 = selectedIndex2 - 1;}
+						//document.getElementById("op5").hidden = "true";
+						d3.select("body").selectAll('svg').remove();
+						run = 4;
+						halt = 0;
+						}
+						else if(selectedIndex2 == 6){
+						//if (selectedIndex < selectedIndex2) {selectedIndex2 = selectedIndex2 - 1;}
+						//document.getElementById("op6").hidden = "true";
+						d3.select("body").selectAll('svg').remove();
+						run = 2;
+						halt = 1;
+						}
+						else if(selectedIndex2 == 7){
+						
+						//document.getElementById("op7").hidden = "true";
+						d3.select("body").selectAll('svg').remove();
+						run = 4;
+						halt = 1;
+						}else if(selectedIndex2 == 8){
+						//if (selectedIndex < selectedIndex2) {selectedIndex2 = selectedIndex2 - 1;}
+						//document.getElementById("op8").hidden = "true";
+						d3.select("body").selectAll('svg').remove();
+						run = 4;
+						halt = 1;
+						}else if(selectedIndex2 == 9){
+						//if (selectedIndex < selectedIndex2) {selectedIndex2 = selectedIndex2 - 1;}
+						//document.getElementById("op9").hidden = "true";
+						d3.select("body").selectAll('svg').remove();
+						run = 3;
+						halt = 1;
+						}else if(selectedIndex2 == 10){
+						//if (selectedIndex < selectedIndex2) {selectedIndex2 = selectedIndex2 - 1;}
+						//document.getElementById("op10").hidden = "true";
+						d3.select("body").selectAll('svg').remove();
+						run = 3;
+						halt = 1;
+						}else if(selectedIndex2 == 11){
+						//if (selectedIndex < selectedIndex2) {selectedIndex2 = selectedIndex2 - 1;}
+						//document.getElementById("op11").hidden = "true";
+						d3.select("body").selectAll('svg').remove();
+						run = 3;
+						halt = 1;
+						}
+
+						a(run, halt, run, filterSex, filterRace);
+						function a(run, halt, maxAnswer, filterSex, filterRace) {
+						
+						
+							while (run >= halt) {
+							drawBar1(totalVar[selectedIndex], totalVar[selectedIndex2], run, halt, maxAnswer, filterSex,filterRace);
+							run = run - 1;
+						}
+						numberRun = 0;
+						}
+				   })
 
 //draw multiple svg line graphs
 //first create svg fieldset
 //draw 3 bar graphs
-function drawBar1(variable){
-d3.select("body").selectAll('svg').remove();
+
+/*var navBox = svg.append("rect")
+					.attr("x", 200)
+					.attr("y", 2000)
+					.attr("id", "navBoxAttributes")*/
+var numberRun = 0;
+function drawBar1(variable, variable2, answerRange, halt, run, filterSex, filterRace){
+numberRun = numberRun + 1;
+
 var svgW = 1400;
-var svgH = 300;
 var paddingL = 80;
 var paddingT = 100;
 var chartW = 1000;	
 var chartH = 250;	
+var svgH = 0;
+
+if(numberRun == 2) {svgH = 400;}
+else {svgH = 300;}
+
+
 //calculate and create array for each line
 
 //for each array, goes the total number of answers in the order of year NORMALIZED
 //get total number of both the answers and total answer for years
+var linedata0 = [];
 var linedata1 = [];
 var linedata2 = [];
 var linedata3 = [];
 var linedata4 = [];
-var linedata5 = [];
 
+var count0 = 0;
 var count1 = 0;
 var count2 = 0;
 var count3 = 0;
 var count4 = 0;
-var count5 = 0;
 var yearCount = 0;
 
-//input the variable to show in every graph in pa
-for (a=0; a<years.length;a++){
+//sex = 1; male
+//race = 1; white; black;other
+
+for (eachYear=0; eachYear<years.length;eachYear++){
+//run this loop for number of years
 	for (i=0; i<dataset.length; i++) {
-	//less than high school
-		if (dataset[i].year == years[a]) {
-			if (dataset[i][variable] == 4) {
-				if (dataset[i].degreeMe == 0) {
-					count1 = count1 + 1;
+//run through dataset to find data with matching year
+		if (dataset[i].year == years[eachYear]) {
+//store data into appripriate place according to answer number		
+//run from 0 to 5 to find out which matches
+				if (dataset[i][variable] == answerRange) {
+	//if it matches
+	//in the data that matches year, find ones with matching answer number
+	//to find out which it belongs to in variable2
+					if(filterSex < 1) {
+						if(filterRace < 1) {
+							if (dataset[i][variable2] == 0) {
+							count0 = count0 + 1;
+							}
+							else if (dataset[i][variable2] == 1) {
+							count1 = count1 + 1;
+							}
+							else if (dataset[i][variable2] == 2) {
+							count2 = count2 + 1;
+							}
+							else if (dataset[i][variable2] == 3) {
+							count3 = count3 + 1;
+							}
+							else if (dataset[i][variable2] == 4) {
+							count4 = count4 + 1;
+							}
+						}
+						else{	
+							if(dataset[i]["race"] == filterRace) {	
+								if (dataset[i][variable2] == 0) {
+								count0 = count0 + 1;
+								}
+								else if (dataset[i][variable2] == 1) {
+								count1 = count1 + 1;
+								}
+								else if (dataset[i][variable2] == 2) {
+								count2 = count2 + 1;
+								}
+								else if (dataset[i][variable2] == 3) {
+								count3 = count3 + 1;
+								}
+								else if (dataset[i][variable2] == 4) {
+								count4 = count4 + 1;
+								}						
+							}
+						}	
 					}
-				else if(dataset[i].degreeMe == 1) {
-					count2 = count2 + 1;
+					else if(filterSex  == 1) {
+						if(dataset[i]["sex"] == 1) {	
+							if(filterRace < 1) {
+								if (dataset[i][variable2] == 0) {
+								count0 = count0 + 1;
+								}
+								else if (dataset[i][variable2] == 1) {
+								count1 = count1 + 1;
+								}
+								else if (dataset[i][variable2] == 2) {
+								count2 = count2 + 1;
+								}
+								else if (dataset[i][variable2] == 3) {
+								count3 = count3 + 1;
+								}
+								else if (dataset[i][variable2] == 4) {
+								count4 = count4 + 1;
+								}
+							}
+							else{	
+								if(dataset[i]["race"] == filterRace) {	
+									if (dataset[i][variable2] == 0) {
+									count0 = count0 + 1;
+									}
+									else if (dataset[i][variable2] == 1) {
+									count1 = count1 + 1;
+									}
+									else if (dataset[i][variable2] == 2) {
+									count2 = count2 + 1;
+									}
+									else if (dataset[i][variable2] == 3) {
+									count3 = count3 + 1;
+									}
+									else if (dataset[i][variable2] == 4) {
+									count4 = count4 + 1;
+									}						
+								}
+							}	
+						}
 					}
-				else if(dataset[i].degreeMe == 2) {
-					count3 = count3 + 1;
+					else if(filterSex  == 2) {
+						if(dataset[i]["sex"] == 2) {	
+							if(filterRace < 1) {
+								if (dataset[i][variable2] == 0) {
+								count0 = count0 + 1;
+								}
+								else if (dataset[i][variable2] == 1) {
+								count1 = count1 + 1;
+								}
+								else if (dataset[i][variable2] == 2) {
+								count2 = count2 + 1;
+								}
+								else if (dataset[i][variable2] == 3) {
+								count3 = count3 + 1;
+								}
+								else if (dataset[i][variable2] == 4) {
+								count4 = count4 + 1;
+								}
+							}
+							else{	
+								if(dataset[i]["race"] == filterRace) {	
+									if (dataset[i][variable2] == 0) {
+									count0 = count0 + 1;
+									}
+									else if (dataset[i][variable2] == 1) {
+									count1 = count1 + 1;
+									}
+									else if (dataset[i][variable2] == 2) {
+									count2 = count2 + 1;
+									}
+									else if (dataset[i][variable2] == 3) {
+									count3 = count3 + 1;
+									}
+									else if (dataset[i][variable2] == 4) {
+									count4 = count4 + 1;
+									}						
+								}
+							}	
+						}
 					}
-				else if(dataset[i].degreeMe == 3) {
-					count4 = count4 + 1;
-					}
-				else if(dataset[i].degreeMe == 4) {
-					count5 = count5 + 1;
 				}
-			}
 		yearCount = yearCount + 1;
-		}	
+		}
 	}
+	count0 = count0 / yearCount;
 	count1 = count1 / yearCount;
 	count2 = count2 / yearCount;
 	count3 = count3 / yearCount;
-	count4 = count4 / yearCount;
-	count5 = count5 / yearCount;
+	count4 = count4 / yearCount;		
+	//0 means gradutate for 1972, 1976, 1982...
+	linedata0[eachYear] = count0;
+	linedata1[eachYear] = count1;
+	linedata2[eachYear] = count2;
+	linedata3[eachYear] = count3;
+	linedata4[eachYear] = count4;
 	
-	linedata1.push(count1);
-	linedata2.push(count2);
-	linedata3.push(count3);
-	linedata4.push(count4);
-	linedata5.push(count5);
-	
-	yearCount = 0;
+	yearCount = 0;	
+	count1 = 0;
+	count2 = 0;
+	count3 = 0;
+	count4 = 0;
+	count5 = 0;
 }
 
-var findMax = linedata1.concat(linedata2, linedata3, linedata4, linedata5);
+var findMax = linedata0.concat(linedata1, linedata2, linedata3, linedata4);
 
 var svg = d3.select("body")
             .append("svg")
             .attr("width", svgW)
             .attr("height", svgH)
 			.attr("translate", "transform(80, 100)")
-			
-
 
 var yScale = d3.scale.linear()
 			.domain([0, d3.max(findMax)])
@@ -168,8 +670,163 @@ var lineValue = d3.svg.line()
 					//this should apply to dataset with less years
 					.y(function(d){return yScale(d)})
 					.interpolate("linear");		
-	
-var lines = svg.append("g")
+
+if(variable2 == "momWorked") {
+		var lines = svg.append("g")
+		//when there should be two lines.
+				lines.append("path")
+	                 .attr("class", "line")
+                     .attr("d", lineValue(linedata1))
+                     .attr("stroke", "#d73027")
+                     .attr("stroke-width", 2)
+					 .attr("class", "line1a")
+                     .attr("fill", "none");
+				lines.append("path")
+	                 .attr("class", "line")
+                     .attr("d", lineValue(linedata2))
+                     .attr("stroke", "#ff661a")
+                     .attr("stroke-width", 2)
+					 .attr("class", "line2a")
+                     .attr("fill", "none");
+}
+else if(variable2 == "confidenceCongress") {
+			var lines = svg.append("g")
+				lines.append("path")
+	                 .attr("class", "line")
+                     .attr("d", lineValue(linedata1))
+                     .attr("stroke", "#d73027")
+                     .attr("stroke-width", 2)
+					 .attr("class", "line1a")
+                     .attr("fill", "none");
+				lines.append("path")
+	                 .attr("class", "line")
+                     .attr("d", lineValue(linedata2))
+                     .attr("stroke", "#ff661a")
+                     .attr("stroke-width", 2)
+					 .attr("class", "line2a")
+                     .attr("fill", "none");
+				lines.append("path")
+	                 .attr("class", "line")
+                     .attr("d", lineValue(linedata3))
+                     .attr("stroke", "#8c510a")
+                     .attr("stroke-width", 2)
+					 .attr("class", "line3a")
+                     .attr("fill", "none");	
+}
+else if(variable2 == "confidencePress") {
+			var lines = svg.append("g")
+				lines.append("path")
+	                 .attr("class", "line")
+                     .attr("d", lineValue(linedata1))
+                     .attr("stroke", "#d73027")
+                     .attr("stroke-width", 2)
+					 .attr("class", "line1a")
+                     .attr("fill", "none");
+				lines.append("path")
+	                 .attr("class", "line")
+                     .attr("d", lineValue(linedata2))
+                     .attr("stroke", "#ff661a")
+                     .attr("stroke-width", 2)
+					 .attr("class", "line2a")
+                     .attr("fill", "none");
+				lines.append("path")
+	                 .attr("class", "line")
+                     .attr("d", lineValue(linedata3))
+                     .attr("stroke", "#8c510a")
+                     .attr("stroke-width", 2)
+					 .attr("class", "line3a")
+                     .attr("fill", "none");	
+}
+else if(variable2 == "confidenceLaw") {
+			var lines = svg.append("g")
+				lines.append("path")
+	                 .attr("class", "line")
+                     .attr("d", lineValue(linedata1))
+                     .attr("stroke", "#d73027")
+                     .attr("stroke-width", 2)
+					 .attr("class", "line1a")
+                     .attr("fill", "none");
+				lines.append("path")
+	                 .attr("class", "line")
+                     .attr("d", lineValue(linedata2))
+                     .attr("stroke", "#ff661a")
+                     .attr("stroke-width", 2)
+					 .attr("class", "line2a")
+                     .attr("fill", "none");
+				lines.append("path")
+	                 .attr("class", "line")
+                     .attr("d", lineValue(linedata3))
+                     .attr("stroke", "#8c510a")
+                     .attr("stroke-width", 2)
+					 .attr("class", "line3a")
+                     .attr("fill", "none");	
+}
+else if(variable2 == "womenWorking") {
+			var lines = svg.append("g")
+		//when there should be two lines.
+				lines.append("path")
+	                 .attr("class", "line")
+                     .attr("d", lineValue(linedata1))
+                     .attr("stroke", "#d73027")
+                     .attr("stroke-width", 2)
+					 .attr("class", "line1a")
+                     .attr("fill", "none");
+				lines.append("path")
+	                 .attr("class", "line")
+                     .attr("d", lineValue(linedata2))
+                     .attr("stroke", "#ff661a")
+                     .attr("stroke-width", 2)
+					 .attr("class", "line2a")
+                     .attr("fill", "none");
+				lines.append("path")
+	                 .attr("class", "line")
+                     .attr("d", lineValue(linedata3))
+                     .attr("stroke", "#8c510a")
+                     .attr("stroke-width", 2)
+					 .attr("class", "line3a")
+                     .attr("fill", "none");	
+				lines.append("path")
+	                 .attr("class", "line")
+                     .attr("d", lineValue(linedata4))
+                     .attr("stroke", "#1b7837")
+                     .attr("stroke-width", 2)
+					 .attr("class", "line4a")
+                     .attr("fill", "none");
+}
+else if(variable2 == "workingMother") {
+			var lines = svg.append("g")
+		//when there should be two lines.
+				lines.append("path")
+	                 .attr("class", "line")
+                     .attr("d", lineValue(linedata1))
+                     .attr("stroke", "#d73027")
+                     .attr("stroke-width", 2)
+					 .attr("class", "line1a")
+                     .attr("fill", "none");
+				lines.append("path")
+	                 .attr("class", "line")
+                     .attr("d", lineValue(linedata2))
+                     .attr("stroke", "#ff661a")
+                     .attr("stroke-width", 2)
+					 .attr("class", "line2a")
+                     .attr("fill", "none");
+				lines.append("path")
+	                 .attr("class", "line")
+                     .attr("d", lineValue(linedata3))
+                     .attr("stroke", "#8c510a")
+                     .attr("stroke-width", 2)
+					 .attr("class", "line3a")
+                     .attr("fill", "none");	
+				lines.append("path")
+	                 .attr("class", "line")
+                     .attr("d", lineValue(linedata4))
+                     .attr("stroke", "#1b7837")
+                     .attr("stroke-width", 2)
+					 .attr("class", "line4a")
+                     .attr("fill", "none");
+}
+else if(variable2 == "income16") {
+			var lines = svg.append("g")
 		//when there should be two lines.
 				lines.append("path")
 	                 .attr("class", "line")
@@ -205,12 +862,49 @@ var lines = svg.append("g")
                      .attr("stroke", "#cc1aba")
                      .attr("stroke-width", 2)
 					 .attr("class", "line5a")
-                     .attr("fill", "none");		 
-		  ;
-	
+                     .attr("fill", "none");				
+}
+else {
+			var lines = svg.append("g")
+		//when there should be two lines.
+				lines.append("path")
+	                 .attr("class", "line")
+                     .attr("d", lineValue(linedata0))
+                     .attr("stroke", "#d73027")
+                     .attr("stroke-width", 2)
+					 .attr("class", "line1a")
+                     .attr("fill", "none");
+				lines.append("path")
+	                 .attr("class", "line")
+                     .attr("d", lineValue(linedata1))
+                     .attr("stroke", "#ff661a")
+                     .attr("stroke-width", 2)
+					 .attr("class", "line2a")
+                     .attr("fill", "none");
+				lines.append("path")
+	                 .attr("class", "line")
+                     .attr("d", lineValue(linedata2))
+                     .attr("stroke", "#8c510a")
+                     .attr("stroke-width", 2)
+					 .attr("class", "line3a")
+                     .attr("fill", "none");	
+				lines.append("path")
+	                 .attr("class", "line")
+                     .attr("d", lineValue(linedata3))
+                     .attr("stroke", "#1b7837")
+                     .attr("stroke-width", 2)
+					 .attr("class", "line4a")
+                     .attr("fill", "none");
+				lines.append("path")
+	                 .attr("class", "line")
+                     .attr("d", lineValue(linedata4))
+                     .attr("stroke", "#cc1aba")
+                     .attr("stroke-width", 2)
+					 .attr("class", "line5a")
+                     .attr("fill", "none");				
+}					
 
-		  
-		  
+
 		  // create x axis
 			var timeScale = d3.time.scale()
 				.domain([new Date(1972, 1, 1), new Date(2014, 1, 1)])
@@ -234,15 +928,95 @@ var lines = svg.append("g")
 				.attr('class', 'axis')
 				.attr('transform', "translate("+paddingL +",0)")
 				.call(yAxis);	
-
-var textArray = ["Father","Mother","Spouse"];
+//education
 var selectedIndex = document.getElementById("var1").selectedIndex;
-				
-svg.append("text")
-	.text(textArray[selectedIndex] +"'s highest degree: Graduate")
+
+if(variable == "degreeP"){
+var levels = ["Below high school","High school","Associate/Junior college","Bachelor's","Graduate"];
+	svg.append("text")
+	.text("Father's highest degree: " + levels[answerRange])
 	.attr("x", chartW/2)
 	.attr("y", chartH + 45)
-	
+}
+else if(variable == "degreeM"){
+var levels = ["Below high school","High school","Associate/Junior college","Bachelor's","Graduate"];
+	svg.append("text")
+	.text("Mother's highest degree: " + levels[answerRange])
+	.attr("x", chartW/2)
+	.attr("y", chartH + 45)
+}
+else if(variable == "degreeMe"){
+var levels = ["Below high school","High school","Associate/Junior college","Bachelor's","Graduate"];
+	svg.append("text")
+	.text("Responder's highest degree: " + levels[answerRange])
+	.attr("x", chartW/2)
+	.attr("y", chartH + 45)
+}
+else if(variable == "degreeS"){
+var levels = ["Below high school","High school","Associate/Junior college","Bachelor's","Graduate"];
+	svg.append("text")
+	.text("Spouse's highest degree: " + levels[answerRange])
+	.attr("x", chartW/2)
+	.attr("y", chartH + 45)
+}
+else if(variable == "incomeNumber2000Pro"){
+var levels = ["80% - 100%", "60% - 80%", "40% - 60%", "20% - 40%", "0% - 20%"];
+	svg.append("text") 
+	.text("Current Income Level: Top " + levels[answerRange])
+	.attr("x", chartW/2)
+	.attr("y", chartH + 45)
+}
+else if(variable == "income16") {
+var levels = ["Far below Average","Below Average","Average","Above average","Far above average"	]
+	svg.append("text")
+	.text("Family Income at 16: " + levels[answerRange - 1])
+	.attr("x", chartW/2)
+	.attr("y", chartH + 45)
+
+}
+else if(variable == "momWorked") {
+var levels = ["Mother worked while growing up", "Mother not worked while growing up"]
+	svg.append("text")
+	.text(levels[answerRange] - 1)
+	.attr("x", chartW/2)
+	.attr("y", chartH + 45)
+}
+else if(variable == "womenWorking"){
+var levels = ["Strongly Agree", "Agree", "Disagree", "Strongly Disagree"]
+	svg.append("text")
+	.text("It is better if a man works outside and a woman takes care of home :" + levels[answerRange - 1])
+	.attr("x", chartW/2)
+	.attr("y", chartH + 45)
+}
+else if(variable == "workingMother"){
+var levels = ["Strongly Agree", "Agree", "Disagree", "Strongly Disagree"]
+	svg.append("text")
+	.text("Working mother can have a warm and secure relationship with children as mothers who do not work :" + levels[answerRange - 1])
+	.attr("x", chartW/2)
+	.attr("y", chartH + 45)
+}
+else if(variable == "confidenceCongress") {
+var levels = ["A Great Deal", "Only Some", "Hardly Any"]
+	svg.append("text")
+	.text("Confidence in congress: " + levels[answerRange -1])
+	.attr("x", chartW/2)
+	.attr("y", chartH + 45)
+}
+else if(variable == "confidenceLaw") {
+var levels = ["A Great Deal", "Only Some", "Hardly Any"]
+	svg.append("text")
+	.text("Confidence in law: " + levels[answerRange-1])
+	.attr("x", chartW/2)
+	.attr("y", chartH + 45)
+}
+else if(variable == "confidencePress") {
+var levels = ["A Great Deal", "Only Some", "Hardly Any"]
+	svg.append("text")
+	.text("Confidence in press: " + levels[answerRange-1])
+	.attr("x", chartW/2)
+	.attr("y", chartH + 45)
+}
+			
 var rectX = svgW - 100 - 200;	
 var rectY = svgH - chartH;			
 var legendPadding = 10;	
@@ -253,6 +1027,43 @@ var textX = circleX + legendPadding + 5;
 var textY = circleY + 3.5;
 var dotsColor = ["#cc1aba", "#1b7837","#8c510a", "#ff661a", "#d73027"];
 var legendTextIncome16 = ["Below high school","High school","Associate/Junior college","Bachelor's","Graduate"]
+
+
+if(variable2 == "incomeNumber2000Pro"){
+legendTextIncome16 = ["80% - 100%", "60% - 80%", "40% - 60%", "20% - 40%", "0% - 20%"];
+
+}
+else if(variable2 == "income16") {
+legendTextIncome16 = ["Far below Average","Below Average","Average","Above average","Far above average"]
+
+}
+else if(variable2 == "momWorked") {
+legendTextIncome16 = ["Mother worked while growing up", "Mother not worked while growing up"]
+
+}
+else if(variable2 == "womenWorking"){
+legendTextIncome16 = ["Strongly Agree", "Agree", "Disagree", "Strongly Disagree"]
+
+}
+else if(variable2 == "workingMother"){
+legendTextIncome16 = ["Strongly Agree", "Agree", "Disagree", "Strongly Disagree"]
+
+}
+else if(variable2 == "confidenceCongress") {
+legendTextIncome16 = ["A Great Deal", "Only Some", "Hardly Any"]
+
+}
+else if(variable2 == "confidenceLaw") {
+legendTextIncome16 = ["A Great Deal", "Only Some", "Hardly Any"]
+
+}
+else if(variable2 == "confidencePress") {
+legendTextIncome16 = ["A Great Deal", "Only Some", "Hardly Any"]
+
+}
+else {legendTextIncome16 = ["Below high school","High school","Associate/Junior college","Bachelor's","Graduate"]}
+
+//make a navigation box
 
 
 //make a legend box
@@ -320,1023 +1131,845 @@ var legendCircle = svg.append("circle")
 					.attr("font-size", 14)
 					.attr("y", textY + 106);
 
-	
-	
-	
-}
-function drawBar2(variable){
-var svgW = 1400;
-var svgH = 400;
-var paddingL = 80;
-var paddingT = 100;
-var chartW = 1000;	
-var chartH = 250;	
-//calculate and create array for each line
-
-//for each array, goes the total number of answers in the order of year NORMALIZED
-//get total number of both the answers and total answer for years
-var linedata1 = [];
-var linedata2 = [];
-var linedata3 = [];
-var linedata4 = [];
-var linedata5 = [];
-
-var count1 = 0;
-var count2 = 0;
-var count3 = 0;
-var count4 = 0;
-var count5 = 0;
-var yearCount = 0;
-
-//input the variable to show in every graph in page
-for (a=0; a<years.length;a++){
-	for (i=0; i<dataset.length; i++) {
-	//less than high school
-		if (dataset[i].year == years[a]) {
-			if (dataset[i][variable] == 3) {
-				if (dataset[i].degreeMe == 0) {
-					count1 = count1 + 1;
-					}
-				else if(dataset[i].degreeMe == 1) {
-					count2 = count2 + 1;
-					}
-				else if(dataset[i].degreeMe == 2) {
-					count3 = count3 + 1;
-					}
-				else if(dataset[i].degreeMe == 3) {
-					count4 = count4 + 1;
-					}
-				else if(dataset[i].degreeMe == 4) {
-					count5 = count5 + 1;
-				}
-			}
-		yearCount = yearCount + 1;
-		}	
-	}
-	count1 = count1 / yearCount;
-	count2 = count2 / yearCount;
-	count3 = count3 / yearCount;
-	count4 = count4 / yearCount;
-	count5 = count5 / yearCount;
-	
-	linedata1.push(count1);
-	linedata2.push(count2);
-	linedata3.push(count3);
-	linedata4.push(count4);
-	linedata5.push(count5);
-	console.log(yearCount)
-	yearCount = 0;
 }
 
-var findMax = linedata1.concat(linedata2, linedata3, linedata4, linedata5);
-
-var svg = d3.select("body")
-            .append("svg")
-            .attr("width", svgW)
-            .attr("height", svgH)
-			.attr("translate", "transform(80, 100)")
-			
-
-
-var yScale = d3.scale.linear()
-			.domain([0, d3.max(findMax)])
-			.range([chartH, paddingT]);	
-			
-	
-var lineW = chartW / (linedata1.length -1);			
-
-var lineValue = d3.svg.line()
-	                .x(function(d, i) { 
-					return paddingL + (lineW * i)})
-					//this should apply to dataset with less years
-					.y(function(d){return yScale(d)})
-					.interpolate("linear");		
-	
-var lines = svg.append("g")
-		//when there should be two lines.
-				lines.append("path")
-	                 .attr("class", "line")
-                     .attr("d", lineValue(linedata1))
-                     .attr("stroke", "#d73027")
-                     .attr("stroke-width", 2)
-					 .attr("class", "line1a")
-                     .attr("fill", "none");
-				lines.append("path")
-	                 .attr("class", "line")
-                     .attr("d", lineValue(linedata2))
-                     .attr("stroke", "#ff661a")
-                     .attr("stroke-width", 2)
-					 .attr("class", "line2a")
-                     .attr("fill", "none");
-				lines.append("path")
-	                 .attr("class", "line")
-                     .attr("d", lineValue(linedata3))
-                     .attr("stroke", "#8c510a")
-                     .attr("stroke-width", 2)
-					 .attr("class", "line3a")
-                     .attr("fill", "none");	
-				lines.append("path")
-	                 .attr("class", "line")
-                     .attr("d", lineValue(linedata4))
-                     .attr("stroke", "#1b7837")
-                     .attr("stroke-width", 2)
-					 .attr("class", "line4a")
-                     .attr("fill", "none");
-				lines.append("path")
-	                 .attr("class", "line")
-                     .attr("d", lineValue(linedata5))
-                     .attr("stroke", "#cc1aba")
-                     .attr("stroke-width", 2)
-					 .attr("class", "line5a")
-                     .attr("fill", "none");		 
-		  ;
-	
-
-		  
-		  
-		  // create x axis
-			var timeScale = d3.time.scale()
-				.domain([new Date(1972, 1, 1), new Date(2014, 1, 1)])
-				.range([paddingL, chartW + paddingL])
-
-			var xAxis = d3.svg.axis()
-				.scale(timeScale)
-				.orient('bottom');
-
-			// create x axis
-			svg.append("g")
-				.attr('class', 'axis')
-				.attr("transform", "translate(0,"+chartH + ")")
-				.call(xAxis);
-
-			var yAxis = d3.svg.axis()
-				.scale(yScale)
-				.orient('left');
-
-			svg.append("g")
-				.attr('class', 'axis')
-				.attr('transform', "translate("+paddingL +",0)")
-				.call(yAxis);	
-				
-var textArray = ["Father","Mother","Spouse"];
-var selectedIndex = document.getElementById("var1").selectedIndex;
-				
-svg.append("text")
-	.text(textArray[selectedIndex] +"'s highest degree: Bachelor's")
-	.attr("x", chartW/2)
-	.attr("y", chartH + 45)
-	
-var rectX = svgW - 100 - 200;	
-var rectY = svgH - chartH - 100;			
-var legendPadding = 10;	
-var circleX = rectX + legendPadding + 5;
-var circleY = rectY + 30 - 12;
-var circleR = 8;
-var textX = circleX + legendPadding + 5;
-var textY = circleY + 3.5;
-var dotsColor = ["#cc1aba", "#1b7837","#8c510a", "#ff661a", "#d73027"];
-var legendTextIncome16 = ["Below high school","High school","Associate/Junior college","Bachelor's","Graduate"]
-
-
-//make a legend box
-var legendBox = svg.append("rect")
-					.attr("x", rectX)
-					.attr("y", rectY)
-					.attr("id", "legendBoxAttributes")
-					
-var legendCircle = svg.append("circle")
-					.attr("cx", circleX)
-					.attr("cy", circleY)
-					.attr("r", circleR)
-					.attr("fill", dotsColor[0])
-	
-				   svg.append("text")
-					.text(legendTextIncome16[4])			
-					.attr("x", circleX + legendPadding + 5)
-					.attr("font-size", 14)
-					.attr("y", circleY + 3.5);
-					
-				svg.append("circle")
-					.attr("cx", circleX)
-					.attr("cy", circleY + 27)
-					.attr("r", circleR)
-					.attr("fill", dotsColor[1])
-
-				   svg.append("text")
-					.text(legendTextIncome16[3])			
-					.attr("x", textX)
-					.attr("font-size", 14)
-					.attr("y", textY + 27);
-					
-				svg.append("circle")
-					.attr("cx", circleX)
-					.attr("cy", circleY + 52)
-					.attr("r", circleR)
-					.attr("fill", dotsColor[2])
-
-				   svg.append("text")
-					.text(legendTextIncome16[2])			
-					.attr("x", textX)
-					.attr("font-size", 14)
-					.attr("y", textY + 52);
-					
-				svg.append("circle")
-					.attr("cx", circleX)
-					.attr("cy", circleY + 79)
-					.attr("r", circleR)
-					.attr("fill", dotsColor[3])
-
-				   svg.append("text")
-					.text(legendTextIncome16[1])			
-					.attr("x", textX)
-					.attr("font-size", 14)
-					.attr("y", textY + 79);
-					
-				svg.append("circle")
-					.attr("cx", circleX)
-					.attr("cy", circleY + 106)
-					.attr("r", circleR)
-					.attr("fill", dotsColor[4])
-				   svg.append("text")
-					.text(legendTextIncome16[0])			
-					.attr("x", textX)
-					.attr("font-size", 14)
-					.attr("y", textY + 106);	
-	
-	
-}
-function drawBar3(variable){
-var svgW = 1400;
-var svgH = 300;
-var paddingL = 80;
-var paddingT = 100;
-var chartW = 1000;	
-var chartH = 250;	
-//calculate and create array for each line
-
-//for each array, goes the total number of answers in the order of year NORMALIZED
-//get total number of both the answers and total answer for years
-var linedata1 = [];
-var linedata2 = [];
-var linedata3 = [];
-var linedata4 = [];
-var linedata5 = [];
-
-var count1 = 0;
-var count2 = 0;
-var count3 = 0;
-var count4 = 0;
-var count5 = 0;
-var yearCount = 0;
-
-//input the variable to show in every graph in page
-for (a=0; a<years.length;a++){
-	for (i=0; i<dataset.length; i++) {
-	//less than high school
-		if (dataset[i].year == years[a]) {
-			if (dataset[i][variable] == 2) {
-				if (dataset[i].degreeMe == 0) {
-					count1 = count1 + 1;
-					}
-				else if(dataset[i].degreeMe == 1) {
-					count2 = count2 + 1;
-					}
-				else if(dataset[i].degreeMe == 2) {
-					count3 = count3 + 1;
-					}
-				else if(dataset[i].degreeMe == 3) {
-					count4 = count4 + 1;
-					}
-				else if(dataset[i].degreeMe == 4) {
-					count5 = count5 + 1;
-				}
-			}
-		yearCount = yearCount + 1;
-		}	
-	}
-	count1 = count1 / yearCount;
-	count2 = count2 / yearCount;
-	count3 = count3 / yearCount;
-	count4 = count4 / yearCount;
-	count5 = count5 / yearCount;
-	
-	linedata1.push(count1);
-	linedata2.push(count2);
-	linedata3.push(count3);
-	linedata4.push(count4);
-	linedata5.push(count5);
-	
-	yearCount = 0;
-}
-
-var findMax = linedata1.concat(linedata2, linedata3, linedata4, linedata5);
-
-var svg = d3.select("body")
-            .append("svg")
-            .attr("width", svgW)
-            .attr("height", svgH)
-			.attr("translate", "transform(80, 0)")
-			
-
-
-var yScale = d3.scale.linear()
-			.domain([0, d3.max(findMax)])
-			.range([chartH, paddingT]);	
-			
-	
-var lineW = chartW / (linedata1.length -1);			
-
-var lineValue = d3.svg.line()
-	                .x(function(d, i) { 
-					return paddingL + (lineW * i)})
-					//this should apply to dataset with less years
-					.y(function(d){return yScale(d)})
-					.interpolate("linear");		
-	
-var lines = svg.append("g")
-		//when there should be two lines.
-				lines.append("path")
-	                 .attr("class", "line")
-                     .attr("d", lineValue(linedata1))
-                     .attr("stroke", "#d73027")
-                     .attr("stroke-width", 2)
-					 .attr("class", "line1a")
-                     .attr("fill", "none");
-				lines.append("path")
-	                 .attr("class", "line")
-                     .attr("d", lineValue(linedata2))
-                     .attr("stroke", "#ff661a")
-                     .attr("stroke-width", 2)
-					 .attr("class", "line2a")
-                     .attr("fill", "none");
-				lines.append("path")
-	                 .attr("class", "line")
-                     .attr("d", lineValue(linedata3))
-                     .attr("stroke", "#8c510a")
-                     .attr("stroke-width", 2)
-					 .attr("class", "line3a")
-                     .attr("fill", "none");	
-				lines.append("path")
-	                 .attr("class", "line")
-                     .attr("d", lineValue(linedata4))
-                     .attr("stroke", "#1b7837")
-                     .attr("stroke-width", 2)
-					 .attr("class", "line4a")
-                     .attr("fill", "none");
-				lines.append("path")
-	                 .attr("class", "line")
-                     .attr("d", lineValue(linedata5))
-                     .attr("stroke", "#cc1aba")
-                     .attr("stroke-width", 2)
-					 .attr("class", "line5a")
-                     .attr("fill", "none");		 
-		  ;
-	
-
-		  
-		  
-		  // create x axis
-			var timeScale = d3.time.scale()
-				.domain([new Date(1972, 1, 1), new Date(2014, 1, 1)])
-				.range([paddingL, chartW + paddingL])
-
-			var xAxis = d3.svg.axis()
-				.scale(timeScale)
-				.orient('bottom');
-
-			// create x axis
-			svg.append("g")
-				.attr('class', 'axis')
-				.attr("transform", "translate(0,"+chartH + ")")
-				.call(xAxis);
-
-			var yAxis = d3.svg.axis()
-				.scale(yScale)
-				.orient('left');
-
-			svg.append("g")
-				.attr('class', 'axis')
-				.attr('transform', "translate("+paddingL +",0)")
-				.call(yAxis);	
-				
-var textArray = ["Father","Mother","Spouse"];
-var selectedIndex = document.getElementById("var1").selectedIndex;
-				
-svg.append("text")
-	.text(textArray[selectedIndex] +"'s highest degree: Associate/Junior college")
-	.attr("x", chartW/2)
-	.attr("y", chartH + 45)
-	
-var rectX = svgW - 100 - 200;	
-var rectY = svgH - chartH;			
-var legendPadding = 10;	
-var circleX = rectX + legendPadding + 5;
-var circleY = rectY + 30 - 12;
-var circleR = 8;
-var textX = circleX + legendPadding + 5;
-var textY = circleY + 3.5;
-var dotsColor = ["#cc1aba", "#1b7837","#8c510a", "#ff661a", "#d73027"];
-var legendTextIncome16 = ["Below high school","High school","Associate/Junior college","Bachelor's","Graduate"]
-
-
-//make a legend box
-var legendBox = svg.append("rect")
-					.attr("x", rectX)
-					.attr("y", rectY)
-					.attr("id", "legendBoxAttributes")
-					
-var legendCircle = svg.append("circle")
-					.attr("cx", circleX)
-					.attr("cy", circleY)
-					.attr("r", circleR)
-					.attr("fill", dotsColor[0])
-	
-				   svg.append("text")
-					.text(legendTextIncome16[4])			
-					.attr("x", circleX + legendPadding + 5)
-					.attr("font-size", 14)
-					.attr("y", circleY + 3.5);
-					
-				svg.append("circle")
-					.attr("cx", circleX)
-					.attr("cy", circleY + 27)
-					.attr("r", circleR)
-					.attr("fill", dotsColor[1])
-
-				   svg.append("text")
-					.text(legendTextIncome16[3])			
-					.attr("x", textX)
-					.attr("font-size", 14)
-					.attr("y", textY + 27);
-					
-				svg.append("circle")
-					.attr("cx", circleX)
-					.attr("cy", circleY + 52)
-					.attr("r", circleR)
-					.attr("fill", dotsColor[2])
-
-				   svg.append("text")
-					.text(legendTextIncome16[2])			
-					.attr("x", textX)
-					.attr("font-size", 14)
-					.attr("y", textY + 52);
-					
-				svg.append("circle")
-					.attr("cx", circleX)
-					.attr("cy", circleY + 79)
-					.attr("r", circleR)
-					.attr("fill", dotsColor[3])
-
-				   svg.append("text")
-					.text(legendTextIncome16[1])			
-					.attr("x", textX)
-					.attr("font-size", 14)
-					.attr("y", textY + 79);
-					
-				svg.append("circle")
-					.attr("cx", circleX)
-					.attr("cy", circleY + 106)
-					.attr("r", circleR)
-					.attr("fill", dotsColor[4])
-				   svg.append("text")
-					.text(legendTextIncome16[0])			
-					.attr("x", textX)
-					.attr("font-size", 14)
-					.attr("y", textY + 106);
-
-	
-				
-}
-function drawBar4(variable){
-var svgW = 1400;
-var svgH = 300;
-var paddingL = 80;
-var paddingT = 100;
-var chartW = 1000;	
-var chartH = 250;	
-//calculate and create array for each line
-
-//for each array, goes the total number of answers in the order of year NORMALIZED
-//get total number of both the answers and total answer for years
-var linedata1 = [];
-var linedata2 = [];
-var linedata3 = [];
-var linedata4 = [];
-var linedata5 = [];
-
-var count1 = 0;
-var count2 = 0;
-var count3 = 0;
-var count4 = 0;
-var count5 = 0;
-var yearCount = 0;
-
-//input the variable to show in every graph in page
-for (a=0; a<years.length;a++){
-	for (i=0; i<dataset.length; i++) {
-	//less than high school
-		if (dataset[i].year == years[a]) {
-			if (dataset[i][variable]== 1) {
-				if (dataset[i].degreeMe == 0) {
-					count1 = count1 + 1;
-					}
-				else if(dataset[i].degreeMe == 1) {
-					count2 = count2 + 1;
-					}
-				else if(dataset[i].degreeMe == 2) {
-					count3 = count3 + 1;
-					}
-				else if(dataset[i].degreeMe == 3) {
-					count4 = count4 + 1;
-					}
-				else if(dataset[i].degreeMe == 4) {
-					count5 = count5 + 1;
-				}
-			}
-		yearCount = yearCount + 1;
-		}	
-	}
-	count1 = count1 / yearCount;
-	count2 = count2 / yearCount;
-	count3 = count3 / yearCount;
-	count4 = count4 / yearCount;
-	count5 = count5 / yearCount;
-	
-	linedata1.push(count1);
-	linedata2.push(count2);
-	linedata3.push(count3);
-	linedata4.push(count4);
-	linedata5.push(count5);
-	
-	yearCount = 0;
-}
-
-var findMax = linedata1.concat(linedata2, linedata3, linedata4, linedata5);
-
-var svg = d3.select("body")
-            .append("svg")
-            .attr("width", svgW)
-            .attr("height", svgH)
-			.attr("translate", "transform(80, 100)")
-			
-
-
-var yScale = d3.scale.linear()
-			.domain([0, d3.max(findMax)])
-			.range([chartH, paddingT]);	
-			
-	
-var lineW = chartW / (linedata1.length -1);			
-
-var lineValue = d3.svg.line()
-	                .x(function(d, i) { 
-					return paddingL + (lineW * i)})
-					//this should apply to dataset with less years
-					.y(function(d){return yScale(d)})
-					.interpolate("linear");		
-	
-var lines = svg.append("g")
-		//when there should be two lines.
-				lines.append("path")
-	                 .attr("class", "line")
-                     .attr("d", lineValue(linedata1))
-                     .attr("stroke", "#d73027")
-                     .attr("stroke-width", 2)
-					 .attr("class", "line1a")
-                     .attr("fill", "none");
-				lines.append("path")
-	                 .attr("class", "line")
-                     .attr("d", lineValue(linedata2))
-                     .attr("stroke", "#ff661a")
-                     .attr("stroke-width", 2)
-					 .attr("class", "line2a")
-                     .attr("fill", "none");
-				lines.append("path")
-	                 .attr("class", "line")
-                     .attr("d", lineValue(linedata3))
-                     .attr("stroke", "#8c510a")
-                     .attr("stroke-width", 2)
-					 .attr("class", "line3a")
-                     .attr("fill", "none");	
-				lines.append("path")
-	                 .attr("class", "line")
-                     .attr("d", lineValue(linedata4))
-                     .attr("stroke", "#1b7837")
-                     .attr("stroke-width", 2)
-					 .attr("class", "line4a")
-                     .attr("fill", "none");
-				lines.append("path")
-	                 .attr("class", "line")
-                     .attr("d", lineValue(linedata5))
-                     .attr("stroke", "#cc1aba")
-                     .attr("stroke-width", 2)
-					 .attr("class", "line5a")
-                     .attr("fill", "none");		 
-		  ;
-	
-
-		  
-		  
-		  // create x axis
-			var timeScale = d3.time.scale()
-				.domain([new Date(1972, 1, 1), new Date(2014, 1, 1)])
-				.range([paddingL, chartW + paddingL])
-
-			var xAxis = d3.svg.axis()
-				.scale(timeScale)
-				.orient('bottom');
-
-			// create x axis
-			svg.append("g")
-				.attr('class', 'axis')
-				.attr("transform", "translate(0,"+chartH + ")")
-				.call(xAxis);
-
-			var yAxis = d3.svg.axis()
-				.scale(yScale)
-				.orient('left');
-
-			svg.append("g")
-				.attr('class', 'axis')
-				.attr('transform', "translate("+paddingL +",0)")
-				.call(yAxis);	
-				
-var textArray = ["Father","Mother","Spouse"];
-var selectedIndex = document.getElementById("var1").selectedIndex;
-				
-svg.append("text")
-	.text(textArray[selectedIndex] +"'s highest degree: High school")
-	.attr("x", chartW/2)
-	.attr("y", chartH + 45)
-	
-var rectX = svgW - 100 - 200;	
-var rectY = svgH - chartH;			
-var legendPadding = 10;	
-var circleX = rectX + legendPadding + 5;
-var circleY = rectY + 30 - 12;
-var circleR = 8;
-var textX = circleX + legendPadding + 5;
-var textY = circleY + 3.5;
-var dotsColor = ["#cc1aba", "#1b7837","#8c510a", "#ff661a", "#d73027"];
-var legendTextIncome16 = ["Below high school","High school","Associate/Junior college","Bachelor's","Graduate"]
-
-
-//make a legend box
-var legendBox = svg.append("rect")
-					.attr("x", rectX)
-					.attr("y", rectY)
-					.attr("id", "legendBoxAttributes")
-					
-var legendCircle = svg.append("circle")
-					.attr("cx", circleX)
-					.attr("cy", circleY)
-					.attr("r", circleR)
-					.attr("fill", dotsColor[0])
-	
-				   svg.append("text")
-					.text(legendTextIncome16[4])			
-					.attr("x", circleX + legendPadding + 5)
-					.attr("font-size", 14)
-					.attr("y", circleY + 3.5);
-					
-				svg.append("circle")
-					.attr("cx", circleX)
-					.attr("cy", circleY + 27)
-					.attr("r", circleR)
-					.attr("fill", dotsColor[1])
-
-				   svg.append("text")
-					.text(legendTextIncome16[3])			
-					.attr("x", textX)
-					.attr("font-size", 14)
-					.attr("y", textY + 27);
-					
-				svg.append("circle")
-					.attr("cx", circleX)
-					.attr("cy", circleY + 52)
-					.attr("r", circleR)
-					.attr("fill", dotsColor[2])
-
-				   svg.append("text")
-					.text(legendTextIncome16[2])			
-					.attr("x", textX)
-					.attr("font-size", 14)
-					.attr("y", textY + 52);
-					
-				svg.append("circle")
-					.attr("cx", circleX)
-					.attr("cy", circleY + 79)
-					.attr("r", circleR)
-					.attr("fill", dotsColor[3])
-
-				   svg.append("text")
-					.text(legendTextIncome16[1])			
-					.attr("x", textX)
-					.attr("font-size", 14)
-					.attr("y", textY + 79);
-					
-				svg.append("circle")
-					.attr("cx", circleX)
-					.attr("cy", circleY + 106)
-					.attr("r", circleR)
-					.attr("fill", dotsColor[4])
-				   svg.append("text")
-					.text(legendTextIncome16[0])			
-					.attr("x", textX)
-					.attr("font-size", 14)
-					.attr("y", textY + 106);	
-	
-}
-function drawBar5(variable){
-var svgW = 1400;
-var svgH = 300;
-var paddingL = 80;
-var paddingT = 100;
-var chartW = 1000;	
-var chartH = 250;	
-//calculate and create array for each line
-
-//for each array, goes the total number of answers in the order of year NORMALIZED
-//get total number of both the answers and total answer for years
-var linedata1 = [];
-var linedata2 = [];
-var linedata3 = [];
-var linedata4 = [];
-var linedata5 = [];
-
-var count1 = 0;
-var count2 = 0;
-var count3 = 0;
-var count4 = 0;
-var count5 = 0;
-var yearCount = 0;
-
-//input the variable to show in every graph in page
-for (a=0; a<years.length;a++){
-	for (i=0; i<dataset.length; i++) {
-	//less than high school
-		if (dataset[i].year == years[a]) {
-			if (dataset[i][variable] == 0) {
-				if (dataset[i].degreeMe == 0) {
-					count1 = count1 + 1;
-					}
-				else if(dataset[i].degreeMe == 1) {
-					count2 = count2 + 1;
-					}
-				else if(dataset[i].degreeMe == 2) {
-					count3 = count3 + 1;
-					}
-				else if(dataset[i].degreeMe == 3) {
-					count4 = count4 + 1;
-					}
-				else if(dataset[i].degreeMe == 4) {
-					count5 = count5 + 1;
-				}
-			}
-		yearCount = yearCount + 1;
-		}	
-	}
-	count1 = count1 / yearCount;
-	count2 = count2 / yearCount;
-	count3 = count3 / yearCount;
-	count4 = count4 / yearCount;
-	count5 = count5 / yearCount;
-	
-	linedata1.push(count1);
-	linedata2.push(count2);
-	linedata3.push(count3);
-	linedata4.push(count4);
-	linedata5.push(count5);
-	
-	yearCount = 0;
-}
-
-var findMax = linedata1.concat(linedata2, linedata3, linedata4, linedata5);
-
-var svg = d3.select("body")
-            .append("svg")
-            .attr("width", svgW)
-            .attr("height", svgH)
-			.attr("translate", "transform(80, 100)")
-			
-
-
-var yScale = d3.scale.linear()
-			.domain([0, d3.max(findMax)])
-			.range([chartH, paddingT]);	
-			
-	
-var lineW = chartW / (linedata1.length -1);			
-
-var lineValue = d3.svg.line()
-	                .x(function(d, i) { 
-					return paddingL + (lineW * i)})
-					//this should apply to dataset with less years
-					.y(function(d){return yScale(d)})
-					.interpolate("linear");		
-	
-var lines = svg.append("g")
-		//when there should be two lines.
-				lines.append("path")
-	                 .attr("class", "line")
-                     .attr("d", lineValue(linedata1))
-                     .attr("stroke", "#d73027")
-                     .attr("stroke-width", 2)
-					 .attr("class", "line1a")
-                     .attr("fill", "none");
-				lines.append("path")
-	                 .attr("class", "line")
-                     .attr("d", lineValue(linedata2))
-                     .attr("stroke", "#ff661a")
-                     .attr("stroke-width", 2)
-					 .attr("class", "line2a")
-                     .attr("fill", "none");
-				lines.append("path")
-	                 .attr("class", "line")
-                     .attr("d", lineValue(linedata3))
-                     .attr("stroke", "#8c510a")
-                     .attr("stroke-width", 2)
-					 .attr("class", "line3a")
-                     .attr("fill", "none");	
-				lines.append("path")
-	                 .attr("class", "line")
-                     .attr("d", lineValue(linedata4))
-                     .attr("stroke", "#1b7837")
-                     .attr("stroke-width", 2)
-					 .attr("class", "line4a")
-                     .attr("fill", "none");
-				lines.append("path")
-	                 .attr("class", "line")
-                     .attr("d", lineValue(linedata5))
-                     .attr("stroke", "#cc1aba")
-                     .attr("stroke-width", 2)
-					 .attr("class", "line5a")
-                     .attr("fill", "none");		 
-		  ;
-	
-
-		  
-		  
-		  // create x axis
-			var timeScale = d3.time.scale()
-				.domain([new Date(1972, 1, 1), new Date(2014, 1, 1)])
-				.range([paddingL, chartW + paddingL])
-
-			var xAxis = d3.svg.axis()
-				.scale(timeScale)
-				.orient('bottom');
-
-			// create x axis
-			svg.append("g")
-				.attr('class', 'axis')
-				.attr("transform", "translate(0,"+chartH + ")")
-				.call(xAxis);
-
-			var yAxis = d3.svg.axis()
-				.scale(yScale)
-				.orient('left');
-
-			svg.append("g")
-				.attr('class', 'axis')
-				.attr('transform', "translate("+paddingL +",0)")
-				.call(yAxis);	
-				
-var textArray = ["Father","Mother","Spouse"];
-var selectedIndex = document.getElementById("var1").selectedIndex;
-				
-svg.append("text")
-	.text(textArray[selectedIndex] +"'s highest degree: Below high school")
-	.attr("x", chartW/2)
-	.attr("y", chartH + 45)
-	
-var rectX = svgW - 100 - 200;	
-var rectY = svgH - chartH;			
-var legendPadding = 10;	
-var circleX = rectX + legendPadding + 5;
-var circleY = rectY + 30 - 12;
-var circleR = 8;
-var textX = circleX + legendPadding + 5;
-var textY = circleY + 3.5;
-var dotsColor = ["#cc1aba", "#1b7837","#8c510a", "#ff661a", "#d73027"];
-var legendTextIncome16 = ["Below high school","High school","Associate/Junior college","Bachelor's","Graduate"]
-
-
-//make a legend box
-var legendBox = svg.append("rect")
-					.attr("x", rectX)
-					.attr("y", rectY)
-					.attr("id", "legendBoxAttributes")
-					
-var legendCircle = svg.append("circle")
-					.attr("cx", circleX)
-					.attr("cy", circleY)
-					.attr("r", circleR)
-					.attr("fill", dotsColor[0])
-	
-				   svg.append("text")
-					.text(legendTextIncome16[4])			
-					.attr("x", circleX + legendPadding + 5)
-					.attr("font-size", 14)
-					.attr("y", circleY + 3.5);
-					
-				svg.append("circle")
-					.attr("cx", circleX)
-					.attr("cy", circleY + 27)
-					.attr("r", circleR)
-					.attr("fill", dotsColor[1])
-
-				   svg.append("text")
-					.text(legendTextIncome16[3])			
-					.attr("x", textX)
-					.attr("font-size", 14)
-					.attr("y", textY + 27);
-					
-				svg.append("circle")
-					.attr("cx", circleX)
-					.attr("cy", circleY + 52)
-					.attr("r", circleR)
-					.attr("fill", dotsColor[2])
-
-				   svg.append("text")
-					.text(legendTextIncome16[2])			
-					.attr("x", textX)
-					.attr("font-size", 14)
-					.attr("y", textY + 52);
-					
-				svg.append("circle")
-					.attr("cx", circleX)
-					.attr("cy", circleY + 79)
-					.attr("r", circleR)
-					.attr("fill", dotsColor[3])
-
-				   svg.append("text")
-					.text(legendTextIncome16[1])			
-					.attr("x", textX)
-					.attr("font-size", 14)
-					.attr("y", textY + 79);
-					
-				svg.append("circle")
-					.attr("cx", circleX)
-					.attr("cy", circleY + 106)
-					.attr("r", circleR)
-					.attr("fill", dotsColor[4])
-				   svg.append("text")
-					.text(legendTextIncome16[0])			
-					.attr("x", textX)
-					.attr("font-size", 14)
-					.attr("y", textY + 106);	
-	
-}
-function runCount (degreeP) {
-	for (i=0; i<years.length;i++){
-	count(years[i], degreeP);
-	}
-}
-
-function count(yearNumber, count1, count2, count3, count4, count5, yearCount) {
-	for (i=0; i<dataset.length; i++) {
-	//less than high school
-		if (dataset[i].year == yearNumber) {
-			if (dataset[i].degreeP == 0) {
-				count1 = count1 + 1;
-				}
-			else if(dataset[i].degreeP == 1) {
-				count2 = count2 + 1;
-				}
-			else if(dataset[i].degreeP == 2) {
-				count3 = count3 + 1;
-				}
-			else if(dataset[i].degreeP == 3) {
-				count4 = count4 + 1;
-				}
-			else if(dataset[i].degreeP == 4) {
-				count5 = count5 + 1;
-			}
-		yearCount = yearCount + 1;
-		}	
-	}
-	count1 = count1 / yearCount;
-	count2 = count2 / yearCount;
-	count3 = count3 / yearCount;
-	count4 = count4 / yearCount;
-	count5 = count5 / yearCount;
-	
-	linedata1.push(count1);
-	linedata2.push(count2);
-	linedata3.push(count3);
-	linedata4.push(count4);
-	linedata5.push(count5);
-}
 function income2000Max(familyIncome16From0)  {
 	var level = Math.floor(d3.max(income2000)) / 5;
 	for (i=0;i<familyIncome16From0.length;i++){
-		if (familyIncome16From0[i].incomeNumber2000 < level){familyIncome16From0[i].incomeNumber2000Pro = 1}
-		else if (familyIncome16From0[i].incomeNumber2000 < level * 2){familyIncome16From0[i].incomeNumber2000Pro =  2}
-		else if (familyIncome16From0[i].incomeNumber2000 < level * 3){familyIncome16From0[i].incomeNumber2000Pro =  3}
-		else if (familyIncome16From0[i].incomeNumber2000 < level * 4){familyIncome16From0[i].incomeNumber2000Pro =  4}
-		else if (familyIncome16From0[i].incomeNumber2000 >= level * 4){familyIncome16From0[i].incomeNumber2000Pro = 5}
+		if (familyIncome16From0[i].incomeNumber2000 < level){familyIncome16From0[i].incomeNumber2000Pro = 0}
+		else if (familyIncome16From0[i].incomeNumber2000 < level * 2){familyIncome16From0[i].incomeNumber2000Pro =  1}
+		else if (familyIncome16From0[i].incomeNumber2000 < level * 3){familyIncome16From0[i].incomeNumber2000Pro =  2}
+		else if (familyIncome16From0[i].incomeNumber2000 < level * 4){familyIncome16From0[i].incomeNumber2000Pro =  3}
+		else if (familyIncome16From0[i].incomeNumber2000 >= level * 4){familyIncome16From0[i].incomeNumber2000Pro = 4}
 	} 
-	
+}
+function filterFemale() {
+					  var selection = document.getElementById('var1');
+					   var selectedVariable= selection.options[selection.selectedIndex].value;
+					   var selectedIndex = document.getElementById("var1").selectedIndex;
+					   var selectedIndex2 = document.getElementById("var2").selectedIndex;
+					   
+						document.getElementById("radioBothSex").checked = false;
+						document.getElementById("radioMale").checked = false;
+						
+						var allRaceOn = document.getElementById("radioAllRace").checked;
+						var whiteOn = document.getElementById("radioWhite").checked;
+						var blackOn = document.getElementById("radioBlack").checked;
+						var otherOn = document.getElementById("radioOther").checked;
+						
+						var filterSex = 0;
+						var filterRace = 0;
+						
+					   var totalVar = ["degreeP","degreeM","degreeS","degreeMe","income16","incomeNumber2000Pro","momWorked",
+					   "womenWorking","workingMother","confidencePress","confidenceLaw","confidenceCongress"]
+						var run = 0;
+						var halt = 0;
+
+						if(allRaceOn == true) {filterRace = 0;}
+						else if(whiteOn == true) {filterRace = 1;}
+						else if(blackOn == true) {filterRace = 2;}
+						else if(otherOn == true) {filterRace = 3;};		   
+					   
+					   
+	if(selectedIndex == 0) {
+						d3.select("body").selectAll('svg').remove();
+						run = 4;
+						halt = 0;
+						}
+						else if(selectedIndex == 1){
+						//if (selectedIndex < selectedIndex2) {selectedIndex2 = selectedIndex2 - 1;}
+						//document.getElementById("op1").hidden = "true";
+						d3.select("body").selectAll('svg').remove();
+						run = 4;
+						halt = 0;							
+						}
+						else if(selectedIndex == 2){
+						//if (selectedIndex < selectedIndex2) {selectedIndex2 = selectedIndex2 - 1;}
+						//document.getElementById("op2").hidden = "true";
+						d3.select("body").selectAll('svg').remove();
+						run = 4;
+						halt = 0;
+						}
+						else if(selectedIndex == 3){
+						//if (selectedIndex < selectedIndex2) {selectedIndex2 = selectedIndex2 - 1;}
+						//document.getElementById("op3").hidden = "true";
+						d3.select("body").selectAll('svg').remove();
+						run = 4;
+						halt = 0;
+						}
+						else if(selectedIndex == 4){
+						//if (selectedIndex < selectedIndex2) {selectedIndex2 = selectedIndex2 - 1;}
+						//document.getElementById("op4").hidden = "true";
+						d3.select("body").selectAll('svg').remove();
+						run = 5;
+						halt = 1;
+						}
+						else if(selectedIndex == 5){
+						//if (selectedIndex < selectedIndex2) {selectedIndex2 = selectedIndex2 - 1;}
+						//document.getElementById("op5").hidden = "true";
+						d3.select("body").selectAll('svg').remove();
+						run = 4;
+						halt = 0;
+						}
+						else if(selectedIndex == 6){
+						//if (selectedIndex < selectedIndex2) {selectedIndex2 = selectedIndex2 - 1;}
+						//document.getElementById("op6").hidden = "true";
+						d3.select("body").selectAll('svg').remove();
+						run = 2;
+						halt = 1;
+						}
+						else if(selectedIndex == 7){
+						if (selectedIndex < selectedIndex2) {selectedIndex2 = selectedIndex2 - 1;}
+						//document.getElementById("op7").hidden = "true";
+						d3.select("body").selectAll('svg').remove();
+						run = 4;
+						halt = 1;
+						}else if(selectedIndex == 8){
+						//if (selectedIndex < selectedIndex2) {selectedIndex2 = selectedIndex2 - 1;}
+						//document.getElementById("op8").hidden = "true";
+						d3.select("body").selectAll('svg').remove();
+						run = 4;
+						halt = 1;
+						}else if(selectedIndex == 9){
+						//if (selectedIndex < selectedIndex2) {selectedIndex2 = selectedIndex2 - 1;}
+						//document.getElementById("op9").hidden = "true";
+						d3.select("body").selectAll('svg').remove();
+						run = 3;
+						halt = 1;
+						}else if(selectedIndex == 10){
+						//if (selectedIndex < selectedIndex2) {selectedIndex2 = selectedIndex2 - 1;}
+						//document.getElementById("op10").hidden = "true";
+						d3.select("body").selectAll('svg').remove();
+						run = 3;
+						halt = 1;
+						}else if(selectedIndex == 11){
+						//if (selectedIndex < selectedIndex2) {selectedIndex2 = selectedIndex2 - 1;}
+						//document.getElementById("op11").hidden = "true";
+						d3.select("body").selectAll('svg').remove();
+						run = 3;
+						halt = 1;
+						}
+
+						a(run, halt, run, 2, filterRace);
+						function a(run, halt, maxAnswer, filterSex, filterRace) {
+						
+						
+							while (run >= halt) {
+							drawBar1(totalVar[selectedIndex], totalVar[selectedIndex2], run, halt, maxAnswer, 2,filterRace);
+							run = run - 1;
+						}
+						numberRun = 0;
+						}
+
+}
+function filterMale() {
+					   var selection = document.getElementById('var1');
+					   var selectedVariable= selection.options[selection.selectedIndex].value;
+					   var selectedIndex = document.getElementById("var1").selectedIndex;
+					   var selectedIndex2 = document.getElementById("var2").selectedIndex;
+					   
+						document.getElementById("radioBothSex").checked = false;
+						document.getElementById("radioFemale").checked = false;
+						
+						var allRaceOn = document.getElementById("radioAllRace").checked;
+						var whiteOn = document.getElementById("radioWhite").checked;
+						var blackOn = document.getElementById("radioBlack").checked;
+						var otherOn = document.getElementById("radioOther").checked;
+						
+						var filterSex = 0;
+						var filterRace = 0;
+						
+					   var totalVar = ["degreeP","degreeM","degreeS","degreeMe","income16","incomeNumber2000Pro","momWorked",
+					   "womenWorking","workingMother","confidencePress","confidenceLaw","confidenceCongress"]
+						var run = 0;
+						var halt = 0;
+						
+						if(allRaceOn == true) {filterRace = 0;}
+						else if(whiteOn == true) {filterRace = 1;}
+						else if(blackOn == true) {filterRace = 2;}
+						else if(otherOn == true) {filterRace = 3;};			   
+					   
+					   
+	if(selectedIndex == 0) {
+						d3.select("body").selectAll('svg').remove();
+						run = 4;
+						halt = 0;
+						}
+						else if(selectedIndex == 1){
+						//if (selectedIndex < selectedIndex2) {selectedIndex2 = selectedIndex2 - 1;}
+						//document.getElementById("op1").hidden = "true";
+						d3.select("body").selectAll('svg').remove();
+						run = 4;
+						halt = 0;							
+						}
+						else if(selectedIndex == 2){
+						//if (selectedIndex < selectedIndex2) {selectedIndex2 = selectedIndex2 - 1;}
+						//document.getElementById("op2").hidden = "true";
+						d3.select("body").selectAll('svg').remove();
+						run = 4;
+						halt = 0;
+						}
+						else if(selectedIndex == 3){
+						//if (selectedIndex < selectedIndex2) {selectedIndex2 = selectedIndex2 - 1;}
+						//document.getElementById("op3").hidden = "true";
+						d3.select("body").selectAll('svg').remove();
+						run = 4;
+						halt = 0;
+						}
+						else if(selectedIndex == 4){
+						//if (selectedIndex < selectedIndex2) {selectedIndex2 = selectedIndex2 - 1;}
+						//document.getElementById("op4").hidden = "true";
+						d3.select("body").selectAll('svg').remove();
+						run = 5;
+						halt = 1;
+						}
+						else if(selectedIndex == 5){
+						//if (selectedIndex < selectedIndex2) {selectedIndex2 = selectedIndex2 - 1;}
+						//document.getElementById("op5").hidden = "true";
+						d3.select("body").selectAll('svg').remove();
+						run = 4;
+						halt = 0;
+						}
+						else if(selectedIndex == 6){
+						//if (selectedIndex < selectedIndex2) {selectedIndex2 = selectedIndex2 - 1;}
+						//document.getElementById("op6").hidden = "true";
+						d3.select("body").selectAll('svg').remove();
+						run = 2;
+						halt = 1;
+						}
+						else if(selectedIndex == 7){
+						if (selectedIndex < selectedIndex2) {selectedIndex2 = selectedIndex2 - 1;}
+						//document.getElementById("op7").hidden = "true";
+						d3.select("body").selectAll('svg').remove();
+						run = 4;
+						halt = 1;
+						}else if(selectedIndex == 8){
+						//if (selectedIndex < selectedIndex2) {selectedIndex2 = selectedIndex2 - 1;}
+						//document.getElementById("op8").hidden = "true";
+						d3.select("body").selectAll('svg').remove();
+						run = 4;
+						halt = 1;
+						}else if(selectedIndex == 9){
+						//if (selectedIndex < selectedIndex2) {selectedIndex2 = selectedIndex2 - 1;}
+						//document.getElementById("op9").hidden = "true";
+						d3.select("body").selectAll('svg').remove();
+						run = 3;
+						halt = 1;
+						}else if(selectedIndex == 10){
+						//if (selectedIndex < selectedIndex2) {selectedIndex2 = selectedIndex2 - 1;}
+						//document.getElementById("op10").hidden = "true";
+						d3.select("body").selectAll('svg').remove();
+						run = 3;
+						halt = 1;
+						}else if(selectedIndex == 11){
+						//if (selectedIndex < selectedIndex2) {selectedIndex2 = selectedIndex2 - 1;}
+						//document.getElementById("op11").hidden = "true";
+						d3.select("body").selectAll('svg').remove();
+						run = 3;
+						halt = 1;
+						}
+
+						a(run, halt, run, 1, filterRace);
+						function a(run, halt, maxAnswer, filterSex, filterRace) {
+						
+						
+							while (run >= halt) {
+							drawBar1(totalVar[selectedIndex], totalVar[selectedIndex2], run, halt, maxAnswer, 1,filterRace);
+							run = run - 1;
+						}
+						numberRun = 0;
+						}
+
+}
+function filterBothSex() {
+					   var selection = document.getElementById('var1');
+					   var selectedVariable= selection.options[selection.selectedIndex].value;
+					   var selectedIndex = document.getElementById("var1").selectedIndex;
+					   var selectedIndex2 = document.getElementById("var2").selectedIndex;
+					   
+						document.getElementById("radioFemale").checked =false;
+						document.getElementById("radioMale").checked = false;
+						
+						var allRaceOn = document.getElementById("radioAllRace").checked;
+						var whiteOn = document.getElementById("radioWhite").checked;
+						var blackOn = document.getElementById("radioBlack").checked;
+						var otherOn = document.getElementById("radioOther").checked;
+						
+						var filterSex = 0;
+						var filterRace = 0;
+						
+					   var totalVar = ["degreeP","degreeM","degreeS","degreeMe","income16","incomeNumber2000Pro","momWorked",
+					   "womenWorking","workingMother","confidencePress","confidenceLaw","confidenceCongress"]
+						var run = 0;
+						var halt = 0;
+					
+						
+						if(allRaceOn == true) {filterRace = 0;}
+						else if(whiteOn == true) {filterRace = 1;}
+						else if(blackOn == true) {filterRace = 2;}
+						else if(otherOn == true) {filterRace = 3;};			   
+					   
+					   
+	if(selectedIndex == 0) {
+						d3.select("body").selectAll('svg').remove();
+						run = 4;
+						halt = 0;
+						}
+						else if(selectedIndex == 1){
+						//if (selectedIndex < selectedIndex2) {selectedIndex2 = selectedIndex2 - 1;}
+						//document.getElementById("op1").hidden = "true";
+						d3.select("body").selectAll('svg').remove();
+						run = 4;
+						halt = 0;							
+						}
+						else if(selectedIndex == 2){
+						//if (selectedIndex < selectedIndex2) {selectedIndex2 = selectedIndex2 - 1;}
+						//document.getElementById("op2").hidden = "true";
+						d3.select("body").selectAll('svg').remove();
+						run = 4;
+						halt = 0;
+						}
+						else if(selectedIndex == 3){
+						//if (selectedIndex < selectedIndex2) {selectedIndex2 = selectedIndex2 - 1;}
+						//document.getElementById("op3").hidden = "true";
+						d3.select("body").selectAll('svg').remove();
+						run = 4;
+						halt = 0;
+						}
+						else if(selectedIndex == 4){
+						//if (selectedIndex < selectedIndex2) {selectedIndex2 = selectedIndex2 - 1;}
+						//document.getElementById("op4").hidden = "true";
+						d3.select("body").selectAll('svg').remove();
+						run = 5;
+						halt = 1;
+						}
+						else if(selectedIndex == 5){
+						//if (selectedIndex < selectedIndex2) {selectedIndex2 = selectedIndex2 - 1;}
+						//document.getElementById("op5").hidden = "true";
+						d3.select("body").selectAll('svg').remove();
+						run = 4;
+						halt = 0;
+						}
+						else if(selectedIndex == 6){
+						//if (selectedIndex < selectedIndex2) {selectedIndex2 = selectedIndex2 - 1;}
+						//document.getElementById("op6").hidden = "true";
+						d3.select("body").selectAll('svg').remove();
+						run = 2;
+						halt = 1;
+						}
+						else if(selectedIndex == 7){
+						if (selectedIndex < selectedIndex2) {selectedIndex2 = selectedIndex2 - 1;}
+						//document.getElementById("op7").hidden = "true";
+						d3.select("body").selectAll('svg').remove();
+						run = 4;
+						halt = 1;
+						}else if(selectedIndex == 8){
+						//if (selectedIndex < selectedIndex2) {selectedIndex2 = selectedIndex2 - 1;}
+						//document.getElementById("op8").hidden = "true";
+						d3.select("body").selectAll('svg').remove();
+						run = 4;
+						halt = 1;
+						}else if(selectedIndex == 9){
+						//if (selectedIndex < selectedIndex2) {selectedIndex2 = selectedIndex2 - 1;}
+						//document.getElementById("op9").hidden = "true";
+						d3.select("body").selectAll('svg').remove();
+						run = 3;
+						halt = 1;
+						}else if(selectedIndex == 10){
+						//if (selectedIndex < selectedIndex2) {selectedIndex2 = selectedIndex2 - 1;}
+						//document.getElementById("op10").hidden = "true";
+						d3.select("body").selectAll('svg').remove();
+						run = 3;
+						halt = 1;
+						}else if(selectedIndex == 11){
+						//if (selectedIndex < selectedIndex2) {selectedIndex2 = selectedIndex2 - 1;}
+						//document.getElementById("op11").hidden = "true";
+						d3.select("body").selectAll('svg').remove();
+						run = 3;
+						halt = 1;
+						}
+
+						a(run, halt, run, 0, filterRace);
+						function a(run, halt, maxAnswer, filterSex, filterRace) {
+						
+						
+							while (run >= halt) {
+							drawBar1(totalVar[selectedIndex], totalVar[selectedIndex2], run, halt, maxAnswer, 0,filterRace);
+							run = run - 1;
+						}
+						numberRun = 0;
+						}
+
+}
+function filterAllRace() {
+					  var selection = document.getElementById('var1');
+					   var selectedVariable= selection.options[selection.selectedIndex].value;
+					   var selectedIndex = document.getElementById("var1").selectedIndex;
+					   var selectedIndex2 = document.getElementById("var2").selectedIndex;
+					   
+						var bothSexOn = document.getElementById("radioBothSex").checked;
+						var femaleOn = document.getElementById("radioFemale").checked;
+						var maleOn = document.getElementById("radioMale").checked;
+						
+						document.getElementById("radioWhite").checked = false;
+						document.getElementById("radioBlack").checked = false;
+						document.getElementById("radioOther").checked = false;
+						
+						var filterSex = 0;
+						var filterRace = 0;
+						
+					   var totalVar = ["degreeP","degreeM","degreeS","degreeMe","income16","incomeNumber2000Pro","momWorked",
+					   "womenWorking","workingMother","confidencePress","confidenceLaw","confidenceCongress"]
+						var run = 0;
+						var halt = 0;
+						
+						if(bothSexOn == true) {filterSex = 0;}
+						else if(femaleOn == true) {filterSex = 2;}
+						else if(maleOn == true) {filterSex = 1;};
+	   
+	if(selectedIndex == 0) {
+						d3.select("body").selectAll('svg').remove();
+						run = 4;
+						halt = 0;
+						}
+						else if(selectedIndex == 1){
+						//if (selectedIndex < selectedIndex2) {selectedIndex2 = selectedIndex2 - 1;}
+						//document.getElementById("op1").hidden = "true";
+						d3.select("body").selectAll('svg').remove();
+						run = 4;
+						halt = 0;							
+						}
+						else if(selectedIndex == 2){
+						//if (selectedIndex < selectedIndex2) {selectedIndex2 = selectedIndex2 - 1;}
+						//document.getElementById("op2").hidden = "true";
+						d3.select("body").selectAll('svg').remove();
+						run = 4;
+						halt = 0;
+						}
+						else if(selectedIndex == 3){
+						//if (selectedIndex < selectedIndex2) {selectedIndex2 = selectedIndex2 - 1;}
+						//document.getElementById("op3").hidden = "true";
+						d3.select("body").selectAll('svg').remove();
+						run = 4;
+						halt = 0;
+						}
+						else if(selectedIndex == 4){
+						//if (selectedIndex < selectedIndex2) {selectedIndex2 = selectedIndex2 - 1;}
+						//document.getElementById("op4").hidden = "true";
+						d3.select("body").selectAll('svg').remove();
+						run = 5;
+						halt = 1;
+						}
+						else if(selectedIndex == 5){
+						//if (selectedIndex < selectedIndex2) {selectedIndex2 = selectedIndex2 - 1;}
+						//document.getElementById("op5").hidden = "true";
+						d3.select("body").selectAll('svg').remove();
+						run = 4;
+						halt = 0;
+						}
+						else if(selectedIndex == 6){
+						//if (selectedIndex < selectedIndex2) {selectedIndex2 = selectedIndex2 - 1;}
+						//document.getElementById("op6").hidden = "true";
+						d3.select("body").selectAll('svg').remove();
+						run = 2;
+						halt = 1;
+						}
+						else if(selectedIndex == 7){
+						if (selectedIndex < selectedIndex2) {selectedIndex2 = selectedIndex2 - 1;}
+						//document.getElementById("op7").hidden = "true";
+						d3.select("body").selectAll('svg').remove();
+						run = 4;
+						halt = 1;
+						}else if(selectedIndex == 8){
+						//if (selectedIndex < selectedIndex2) {selectedIndex2 = selectedIndex2 - 1;}
+						//document.getElementById("op8").hidden = "true";
+						d3.select("body").selectAll('svg').remove();
+						run = 4;
+						halt = 1;
+						}else if(selectedIndex == 9){
+						//if (selectedIndex < selectedIndex2) {selectedIndex2 = selectedIndex2 - 1;}
+						//document.getElementById("op9").hidden = "true";
+						d3.select("body").selectAll('svg').remove();
+						run = 3;
+						halt = 1;
+						}else if(selectedIndex == 10){
+						//if (selectedIndex < selectedIndex2) {selectedIndex2 = selectedIndex2 - 1;}
+						//document.getElementById("op10").hidden = "true";
+						d3.select("body").selectAll('svg').remove();
+						run = 3;
+						halt = 1;
+						}else if(selectedIndex == 11){
+						//if (selectedIndex < selectedIndex2) {selectedIndex2 = selectedIndex2 - 1;}
+						//document.getElementById("op11").hidden = "true";
+						d3.select("body").selectAll('svg').remove();
+						run = 3;
+						halt = 1;
+						}
+
+						a(run, halt, run, filterSex, 0);
+						function a(run, halt, maxAnswer, filterSex, filterRace) {
+						
+						
+							while (run >= halt) {
+							drawBar1(totalVar[selectedIndex], totalVar[selectedIndex2], run, halt, maxAnswer, filterSex,0);
+							run = run - 1;
+						}
+						numberRun = 0;
+						}
+
+}
+function filterWhite() {
+					   var selection = document.getElementById('var1');
+					   var selectedVariable= selection.options[selection.selectedIndex].value;
+					   var selectedIndex = document.getElementById("var1").selectedIndex;
+					   var selectedIndex2 = document.getElementById("var2").selectedIndex;
+					   
+						var bothSexOn = document.getElementById("radioBothSex").checked;
+						var femaleOn = document.getElementById("radioFemale").checked;
+						var maleOn = document.getElementById("radioMale").checked;
+						
+						document.getElementById("radioAllRace").checked = false;
+						document.getElementById("radioBlack").checked = false;
+						document.getElementById("radioOther").checked = false;
+						
+						var filterSex = 0;
+						var filterRace = 0;
+						
+					   var totalVar = ["degreeP","degreeM","degreeS","degreeMe","income16","incomeNumber2000Pro","momWorked",
+					   "womenWorking","workingMother","confidencePress","confidenceLaw","confidenceCongress"]
+						var run = 0;
+						var halt = 0;
+						
+						if(bothSexOn == true) {filterSex = 0;}
+						else if(femaleOn == true) {filterSex = 2;}
+						else if(maleOn == true) {filterSex = 1;};
+   
+	if(selectedIndex == 0) {
+						d3.select("body").selectAll('svg').remove();
+						run = 4;
+						halt = 0;
+						}
+						else if(selectedIndex == 1){
+						//if (selectedIndex < selectedIndex2) {selectedIndex2 = selectedIndex2 - 1;}
+						//document.getElementById("op1").hidden = "true";
+						d3.select("body").selectAll('svg').remove();
+						run = 4;
+						halt = 0;							
+						}
+						else if(selectedIndex == 2){
+						//if (selectedIndex < selectedIndex2) {selectedIndex2 = selectedIndex2 - 1;}
+						//document.getElementById("op2").hidden = "true";
+						d3.select("body").selectAll('svg').remove();
+						run = 4;
+						halt = 0;
+						}
+						else if(selectedIndex == 3){
+						//if (selectedIndex < selectedIndex2) {selectedIndex2 = selectedIndex2 - 1;}
+						//document.getElementById("op3").hidden = "true";
+						d3.select("body").selectAll('svg').remove();
+						run = 4;
+						halt = 0;
+						}
+						else if(selectedIndex == 4){
+						//if (selectedIndex < selectedIndex2) {selectedIndex2 = selectedIndex2 - 1;}
+						//document.getElementById("op4").hidden = "true";
+						d3.select("body").selectAll('svg').remove();
+						run = 5;
+						halt = 1;
+						}
+						else if(selectedIndex == 5){
+						//if (selectedIndex < selectedIndex2) {selectedIndex2 = selectedIndex2 - 1;}
+						//document.getElementById("op5").hidden = "true";
+						d3.select("body").selectAll('svg').remove();
+						run = 4;
+						halt = 0;
+						}
+						else if(selectedIndex == 6){
+						//if (selectedIndex < selectedIndex2) {selectedIndex2 = selectedIndex2 - 1;}
+						//document.getElementById("op6").hidden = "true";
+						d3.select("body").selectAll('svg').remove();
+						run = 2;
+						halt = 1;
+						}
+						else if(selectedIndex == 7){
+						if (selectedIndex < selectedIndex2) {selectedIndex2 = selectedIndex2 - 1;}
+						//document.getElementById("op7").hidden = "true";
+						d3.select("body").selectAll('svg').remove();
+						run = 4;
+						halt = 1;
+						}else if(selectedIndex == 8){
+						//if (selectedIndex < selectedIndex2) {selectedIndex2 = selectedIndex2 - 1;}
+						//document.getElementById("op8").hidden = "true";
+						d3.select("body").selectAll('svg').remove();
+						run = 4;
+						halt = 1;
+						}else if(selectedIndex == 9){
+						//if (selectedIndex < selectedIndex2) {selectedIndex2 = selectedIndex2 - 1;}
+						//document.getElementById("op9").hidden = "true";
+						d3.select("body").selectAll('svg').remove();
+						run = 3;
+						halt = 1;
+						}else if(selectedIndex == 10){
+						//if (selectedIndex < selectedIndex2) {selectedIndex2 = selectedIndex2 - 1;}
+						//document.getElementById("op10").hidden = "true";
+						d3.select("body").selectAll('svg').remove();
+						run = 3;
+						halt = 1;
+						}else if(selectedIndex == 11){
+						//if (selectedIndex < selectedIndex2) {selectedIndex2 = selectedIndex2 - 1;}
+						//document.getElementById("op11").hidden = "true";
+						d3.select("body").selectAll('svg').remove();
+						run = 3;
+						halt = 1;
+						}
+
+						a(run, halt, run, filterSex, 1);
+						function a(run, halt, maxAnswer, filterSex, filterRace) {
+						
+						
+							while (run >= halt) {
+							drawBar1(totalVar[selectedIndex], totalVar[selectedIndex2], run, halt, maxAnswer, filterSex,1);
+							run = run - 1;
+						}
+						numberRun = 0;
+						}
+
+}
+function filterBlack() {
+					  var selection = document.getElementById('var1');
+					   var selectedVariable= selection.options[selection.selectedIndex].value;
+					   var selectedIndex = document.getElementById("var1").selectedIndex;
+					   var selectedIndex2 = document.getElementById("var2").selectedIndex;
+					   
+						var bothSexOn = document.getElementById("radioBothSex").checked;
+						var femaleOn = document.getElementById("radioFemale").checked;
+						var maleOn = document.getElementById("radioMale").checked;
+						
+						document.getElementById("radioAllRace").checked = false;
+						document.getElementById("radioWhite").checked = false;
+						document.getElementById("radioOther").checked = false;
+						
+						var filterSex = 0;
+						var filterRace = 0;
+						
+					   var totalVar = ["degreeP","degreeM","degreeS","degreeMe","income16","incomeNumber2000Pro","momWorked",
+					   "womenWorking","workingMother","confidencePress","confidenceLaw","confidenceCongress"]
+						var run = 0;
+						var halt = 0;
+						
+						if(bothSexOn == true) {filterSex = 0;}
+						else if(femaleOn == true) {filterSex = 2;}
+						else if(maleOn == true) {filterSex = 1;};
+						
+   
+	if(selectedIndex == 0) {
+						d3.select("body").selectAll('svg').remove();
+						run = 4;
+						halt = 0;
+						}
+						else if(selectedIndex == 1){
+						//if (selectedIndex < selectedIndex2) {selectedIndex2 = selectedIndex2 - 1;}
+						//document.getElementById("op1").hidden = "true";
+						d3.select("body").selectAll('svg').remove();
+						run = 4;
+						halt = 0;							
+						}
+						else if(selectedIndex == 2){
+						//if (selectedIndex < selectedIndex2) {selectedIndex2 = selectedIndex2 - 1;}
+						//document.getElementById("op2").hidden = "true";
+						d3.select("body").selectAll('svg').remove();
+						run = 4;
+						halt = 0;
+						}
+						else if(selectedIndex == 3){
+						//if (selectedIndex < selectedIndex2) {selectedIndex2 = selectedIndex2 - 1;}
+						//document.getElementById("op3").hidden = "true";
+						d3.select("body").selectAll('svg').remove();
+						run = 4;
+						halt = 0;
+						}
+						else if(selectedIndex == 4){
+						//if (selectedIndex < selectedIndex2) {selectedIndex2 = selectedIndex2 - 1;}
+						//document.getElementById("op4").hidden = "true";
+						d3.select("body").selectAll('svg').remove();
+						run = 5;
+						halt = 1;
+						}
+						else if(selectedIndex == 5){
+						//if (selectedIndex < selectedIndex2) {selectedIndex2 = selectedIndex2 - 1;}
+						//document.getElementById("op5").hidden = "true";
+						d3.select("body").selectAll('svg').remove();
+						run = 4;
+						halt = 0;
+						}
+						else if(selectedIndex == 6){
+						//if (selectedIndex < selectedIndex2) {selectedIndex2 = selectedIndex2 - 1;}
+						//document.getElementById("op6").hidden = "true";
+						d3.select("body").selectAll('svg').remove();
+						run = 2;
+						halt = 1;
+						}
+						else if(selectedIndex == 7){
+						if (selectedIndex < selectedIndex2) {selectedIndex2 = selectedIndex2 - 1;}
+						//document.getElementById("op7").hidden = "true";
+						d3.select("body").selectAll('svg').remove();
+						run = 4;
+						halt = 1;
+						}else if(selectedIndex == 8){
+						//if (selectedIndex < selectedIndex2) {selectedIndex2 = selectedIndex2 - 1;}
+						//document.getElementById("op8").hidden = "true";
+						d3.select("body").selectAll('svg').remove();
+						run = 4;
+						halt = 1;
+						}else if(selectedIndex == 9){
+						//if (selectedIndex < selectedIndex2) {selectedIndex2 = selectedIndex2 - 1;}
+						//document.getElementById("op9").hidden = "true";
+						d3.select("body").selectAll('svg').remove();
+						run = 3;
+						halt = 1;
+						}else if(selectedIndex == 10){
+						//if (selectedIndex < selectedIndex2) {selectedIndex2 = selectedIndex2 - 1;}
+						//document.getElementById("op10").hidden = "true";
+						d3.select("body").selectAll('svg').remove();
+						run = 3;
+						halt = 1;
+						}else if(selectedIndex == 11){
+						//if (selectedIndex < selectedIndex2) {selectedIndex2 = selectedIndex2 - 1;}
+						//document.getElementById("op11").hidden = "true";
+						d3.select("body").selectAll('svg').remove();
+						run = 3;
+						halt = 1;
+						}
+
+						a(run, halt, run, filterSex, 2);
+						function a(run, halt, maxAnswer, filterSex, filterRace) {
+						
+						
+							while (run >= halt) {
+							drawBar1(totalVar[selectedIndex], totalVar[selectedIndex2], run, halt, maxAnswer, filterSex,2);
+							run = run - 1;
+						}
+						numberRun = 0;
+						}
+
+}
+function filterOther() {
+					   var selection = document.getElementById('var1');
+					   var selectedVariable= selection.options[selection.selectedIndex].value;
+					   var selectedIndex = document.getElementById("var1").selectedIndex;
+					   var selectedIndex2 = document.getElementById("var2").selectedIndex;
+					   
+						var bothSexOn = document.getElementById("radioBothSex").checked;
+						var femaleOn = document.getElementById("radioFemale").checked;
+						var maleOn = document.getElementById("radioMale").checked;
+						
+						document.getElementById("radioAllRace").checked = false;
+						document.getElementById("radioWhite").checked = false;
+						document.getElementById("radioBlack").checked = false;
+						
+						var filterSex = 0;
+						var filterRace = 0;
+						
+					   var totalVar = ["degreeP","degreeM","degreeS","degreeMe","income16","incomeNumber2000Pro","momWorked",
+					   "womenWorking","workingMother","confidencePress","confidenceLaw","confidenceCongress"]
+						var run = 0;
+						var halt = 0;
+						
+						if(bothSexOn == true) {filterSex = 0;}
+						else if(femaleOn == true) {filterSex = 2;}
+						else if(maleOn == true) {filterSex = 1;};
+
+					   
+	if(selectedIndex == 0) {
+						d3.select("body").selectAll('svg').remove();
+						run = 4;
+						halt = 0;
+						}
+						else if(selectedIndex == 1){
+						//if (selectedIndex < selectedIndex2) {selectedIndex2 = selectedIndex2 - 1;}
+						//document.getElementById("op1").hidden = "true";
+						d3.select("body").selectAll('svg').remove();
+						run = 4;
+						halt = 0;							
+						}
+						else if(selectedIndex == 2){
+						//if (selectedIndex < selectedIndex2) {selectedIndex2 = selectedIndex2 - 1;}
+						//document.getElementById("op2").hidden = "true";
+						d3.select("body").selectAll('svg').remove();
+						run = 4;
+						halt = 0;
+						}
+						else if(selectedIndex == 3){
+						//if (selectedIndex < selectedIndex2) {selectedIndex2 = selectedIndex2 - 1;}
+						//document.getElementById("op3").hidden = "true";
+						d3.select("body").selectAll('svg').remove();
+						run = 4;
+						halt = 0;
+						}
+						else if(selectedIndex == 4){
+						//if (selectedIndex < selectedIndex2) {selectedIndex2 = selectedIndex2 - 1;}
+						//document.getElementById("op4").hidden = "true";
+						d3.select("body").selectAll('svg').remove();
+						run = 5;
+						halt = 1;
+						}
+						else if(selectedIndex == 5){
+						//if (selectedIndex < selectedIndex2) {selectedIndex2 = selectedIndex2 - 1;}
+						//document.getElementById("op5").hidden = "true";
+						d3.select("body").selectAll('svg').remove();
+						run = 4;
+						halt = 0;
+						}
+						else if(selectedIndex == 6){
+						//if (selectedIndex < selectedIndex2) {selectedIndex2 = selectedIndex2 - 1;}
+						//document.getElementById("op6").hidden = "true";
+						d3.select("body").selectAll('svg').remove();
+						run = 2;
+						halt = 1;
+						}
+						else if(selectedIndex == 7){
+						if (selectedIndex < selectedIndex2) {selectedIndex2 = selectedIndex2 - 1;}
+						//document.getElementById("op7").hidden = "true";
+						d3.select("body").selectAll('svg').remove();
+						run = 4;
+						halt = 1;
+						}else if(selectedIndex == 8){
+						//if (selectedIndex < selectedIndex2) {selectedIndex2 = selectedIndex2 - 1;}
+						//document.getElementById("op8").hidden = "true";
+						d3.select("body").selectAll('svg').remove();
+						run = 4;
+						halt = 1;
+						}else if(selectedIndex == 9){
+						//if (selectedIndex < selectedIndex2) {selectedIndex2 = selectedIndex2 - 1;}
+						//document.getElementById("op9").hidden = "true";
+						d3.select("body").selectAll('svg').remove();
+						run = 3;
+						halt = 1;
+						}else if(selectedIndex == 10){
+						//if (selectedIndex < selectedIndex2) {selectedIndex2 = selectedIndex2 - 1;}
+						//document.getElementById("op10").hidden = "true";
+						d3.select("body").selectAll('svg').remove();
+						run = 3;
+						halt = 1;
+						}else if(selectedIndex == 11){
+						//if (selectedIndex < selectedIndex2) {selectedIndex2 = selectedIndex2 - 1;}
+						//document.getElementById("op11").hidden = "true";
+						d3.select("body").selectAll('svg').remove();
+						run = 3;
+						halt = 1;
+						}
+
+						a(run, halt, run, filterSex, 3);
+						function a(run, halt, maxAnswer, filterSex, filterRace) {
+						
+						
+							while (run >= halt) {
+							drawBar1(totalVar[selectedIndex], totalVar[selectedIndex2], run, halt, maxAnswer, filterSex,3);
+							run = run - 1;
+						}
+						numberRun = 0;
+						}
+
 }
 </script>
 </body>
