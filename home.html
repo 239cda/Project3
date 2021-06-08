@@ -588,7 +588,7 @@ d3.selectAll("#movingDots")
 	if (rearrange == false) {
 		d3.selectAll("#movingDots")
 		   .transition()
-		   .duration(100)
+		   .duration(500)
 		   .ease("backs")
             .attr("cx", function(d, i) {
 			xValue2[i] = xValue[i] + ((Math.random() - 0.5) * 30);
@@ -596,7 +596,7 @@ d3.selectAll("#movingDots")
 			.attr("cy", function(d, i) {		
 			return (svgH - familyIncome16From0[i]["income16"] * padding) + (Math.random() - 0.5) * 30 + 65})
           .transition()
-		  .duration(100)
+		  .duration(500)
 		  .ease("backs")
             .attr("cx", function(d, i) {
 			xValue1[i] = xValue2[i] + ((Math.random() - 0.5) * 30);
@@ -609,7 +609,7 @@ d3.selectAll("#movingDots")
 	else if(rearrange == true) {
 		d3.selectAll("#movingDots")
 		   .transition()
-		   .duration(100)
+		   .duration(500)
 		   .ease("backs")
             .attr("cx", function(d, i) {
 			if (familyIncome16From0[i].incomeNow < 13) {
@@ -623,7 +623,7 @@ d3.selectAll("#movingDots")
 				else {return (svgH -familyIncome16From0[i].incomeNumber2000Pro * padding) + (Math.random() - 0.5) * 30 + 65}
 				})
           .transition()
-		  .duration(100)
+		  .duration(500)
 		  .ease("backs")
             .attr("cx", function(d, i) {
 			if (familyIncome16From0[i].incomeNow < 13) {
@@ -924,7 +924,7 @@ d3.selectAll("#movingDotsE")
 	if(rearrange == false) {
 		d3.selectAll("#movingDotsE")
 		   .transition()
-		   .duration(100)
+		   .duration(500)
 		   .ease("backs")
             .attr("cx", function(d, i) {
 			xValue2[i] = xValue[i] + ((Math.random() - 0.5) * 30);
@@ -936,7 +936,7 @@ d3.selectAll("#movingDotsE")
 					else {return 1040;}		
 			})
           .transition()
-		  .duration(100)
+		  .duration(500)
 		  .ease("backs")
             .attr("cx", function(d, i) {
 			xValue1[i] = xValue2[i] + ((Math.random() - 0.5) * 30);
@@ -953,7 +953,7 @@ d3.selectAll("#movingDotsE")
 	else if(rearrange == true) {
 		d3.selectAll("#movingDotsE")
 		   .transition()
-		   .duration(100)
+		   .duration(500)
 		   .ease("backs")
             .attr("cx", function(d, i) {
 			if (familyIncome16From0[i].degreeMe < 5) {
@@ -967,7 +967,7 @@ d3.selectAll("#movingDotsE")
 				else {return (svgH -familyIncome16From0[i].degreeMe * padding) + (Math.random() - 0.5) * 30}
 				})
           .transition()
-		  .duration(100)
+		  .duration(500)
 		  .ease("backs")
             .attr("cx", function(d, i) {
 			if (familyIncome16From0[i].degreeMe < 5) {
@@ -1185,7 +1185,7 @@ d3.selectAll("#movingDotsW")
 	if(rearrange == false) {
 		d3.selectAll("#movingDotsW")
 		   .transition()
-		   .duration(100)
+		   .duration(500)
 		   .ease("backs")
             .attr("cx", function(d, i) {
 			xValue2[i] = xValue[i] + ((Math.random() - 0.5) * 30);
@@ -1197,7 +1197,7 @@ d3.selectAll("#movingDotsW")
 					else {return 1040;}		
 			})
           .transition()
-		  .duration(100)
+		  .duration(500)
 		  .ease("backs")
             .attr("cx", function(d, i) {
 			xValue1[i] = xValue2[i] + ((Math.random() - 0.5) * 30);
@@ -1214,7 +1214,7 @@ d3.selectAll("#movingDotsW")
 	else if(rearrange == true) {
 		d3.selectAll("#movingDotsW")
 		   .transition()
-		   .duration(100)
+		   .duration(500)
 		   .ease("backs")
             .attr("cx", function(d, i) {
 			if (familyIncome16From0[i].womenWorking < 5) {
@@ -1228,7 +1228,7 @@ d3.selectAll("#movingDotsW")
 				else {return (svgH -familyIncome16From0[i].womenWorking * padding) + (Math.random() - 0.5) * 30}
 				})
           .transition()
-		  .duration(100)
+		  .duration(500)
 		  .ease("backs")
             .attr("cx", function(d, i) {
 			if (familyIncome16From0[i].womenWorking < 5) {
@@ -1567,7 +1567,7 @@ d3.selectAll("#movingDotsC")
 	if(rearrange == false) {
 		d3.selectAll("#movingDotsC")
 		   .transition()
-		   .duration(100)
+		   .duration(500)
 		   .ease("backs")
             .attr("cx", function(d, i) {
 			xValue2[i] = xValue[i] + ((Math.random() - 0.5) * 30);
@@ -1579,7 +1579,7 @@ d3.selectAll("#movingDotsC")
 					else {return 1040;}		
 			})
           .transition()
-		  .duration(100)
+		  .duration(500)
 		  .ease("backs")
             .attr("cx", function(d, i) {
 			xValue1[i] = xValue2[i] + ((Math.random() - 0.5) * 30);
@@ -1596,7 +1596,7 @@ d3.selectAll("#movingDotsC")
 	else if(rearrange == true) {
 		d3.selectAll("#movingDotsC")
 		   .transition()
-		   .duration(100)
+		   .duration(500)
 		   .ease("backs")
             .attr("cx", function(d, i) {
 			if (familyIncome16From0[i].confidencePress < 4) {
@@ -1610,7 +1610,7 @@ d3.selectAll("#movingDotsC")
 				else {return (familyIncome16From0[i].confidencePress * padding) + (Math.random() - 0.5) * 30 + 600}
 				})
           .transition()
-		  .duration(100)
+		  .duration(500)
 		  .ease("backs")
             .attr("cx", function(d, i) {
 			if (familyIncome16From0[i].confidencePress < 5) {
